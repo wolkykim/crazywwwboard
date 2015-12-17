@@ -1,0 +1,329 @@
+#!/bin/sh
+#
+# Developed by 'Seung-young, Kim' at July 28, 1998.
+#
+# 'Compile-sh' version 1.5
+#
+# (c) Nobreak Technologies, Inc.
+#
+
+# info
+
+display_info() {
+cat << __EOF__
+####################################################################
+## CrazyWWWBoard98PE2 Compile Wizard :                            ##
+##                                                                ##
+##    WARNING: Developer ONLY                                     ##
+##                                                                ##
+##                               (c) Nobreak Technologies, Inc.   ##
+####################################################################
+__EOF__
+printf "Press ENTER to continue..."
+read x
+echo ""
+}
+
+# success message
+success_msg() {
+cat << __EOF__
+--[ SUCCESSFULLY COMPLETED : Compile-sh ]---------------------------
+All sources are successfully compiled and located in 'bin' directory
+
+We recommend that you would better using 'Install-sh' to install au-
+tomatically. and before you execute 'Install-sh', make sure knowing
+that the directory where you wish to install CGIs and where you wish
+to install other datas.
+(generally 'cgi-bin' & 'htdocs/cwb-data' or 'public_html/cwb-data')
+
+                                      (c) Nobreak Technologies, Inc.
+--------------------------------------------------------------------
+__EOF__
+}
+
+# Finding file in path
+
+find_file() {
+
+	sys_path="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/ccs/bin"
+	lib_path="/usr/lib:/lib:/usr/lib/x86_64-linux-gnu"
+
+	path="$PATH:$sys_path:$lib_path"
+
+	IFS=":"; tmp=""
+	for dir in $path; do
+		if [ -f $dir/$1 ]; then
+			tmp=$dir/$1
+			IFS=""
+			return 0	# true
+		fi
+	done
+	IFS=""
+
+	return 1			# false
+}
+
+
+# Check required system tools
+
+check_req_system() {
+	if find_file gcc; then			# gcc found.
+		cc=$tmp
+		cflags="-Wall"
+	elif find_file cc; then			# gcc not found, but found cc.
+		cc=$tmp
+		#cflags="-Ae"			# for HP-UX cc 
+		cflags="-Xc -w"			# for Solaris cc
+	fi
+
+	if find_file make; then
+		make=$tmp
+	fi
+
+	if find_file ar; then
+		ar=$tmp
+		arflags="-q"
+	fi
+
+	if find_file ranlib; then
+		ranlib=$tmp
+	fi
+
+	if find_file libcrypt.a; then
+		crypt=$tmp
+		lcrypt="-lcrypt"
+	fi
+
+	echo "--[ Checking required system tools ]--------------------------------"
+
+	printf "Checking *C compiler     : " 
+	if [ $cc ]; then	echo "$cc"
+	else			echo "'gcc' or 'cc' not found, it must be required."
+	fi
+
+	printf "Checking *make utility   : "
+	if [ $make ]; then	echo "$make"
+	else			echo "'make' not found, it must be required."
+	fi
+
+	printf "Checking *ar utility     : " 
+	if [ $ar ]; then	echo "$ar"
+	else			echo "'ar' not found, it must be required."
+	fi
+
+	printf "Checking *ranlib utility : "
+	if [ $ranlib ]; then	echo "$ranlib"
+	else			echo "'ranlib' not found, it must be required."
+	fi
+
+	printf "Checking crpyt library   : "
+	if [ $crypt ]; then	echo "$crypt"
+	else			echo "'libcrypt.a' not found. But it's OK."
+	fi
+
+	echo "--------------------------------------------------------------------"
+
+	if [ ! $cc ] || [ ! $make ] || [ ! $ar ] || [ ! $ranlib ]; then
+		echo "Sorry. you do not have enough tools, so I can not continue..."
+		echo "Please, install above softwares except 'libcrypt.a',"
+		echo "and append installed system path in your PATH environment valiable."
+		echo "Then try again!!!"
+		exit 1
+	fi
+
+	echo "Looks good..."
+	echo ""
+}
+
+# Check required directory to ensure that user has original package.
+
+check_req_directory() {
+	gdbm="gdbm-1.7.3"
+	qDecoder="qDecoder-4.3.1"
+	cwb="cwb-5.0"
+	adm="adm-1.2"
+	arc="arc-1.0"
+	md5="md5"
+
+	echo "--[ Checking required directory ]-----------------------------------"
+
+	for dir in $gdbm $qDecoder $md5 $adm $cwb $arc; do
+		if [ -d  $dir ]; then
+			echo "Checking directory : '$dir' OK."
+		else
+			echo "Directory '$dir' not found."
+			echo "Use original package. (http://cwb98.nobreak.com)"
+			exit 1
+		
+		fi
+	done
+
+	echo "--------------------------------------------------------------------"
+	echo "Looks good, too..."
+        echo ""
+	echo "From now we will try to compile whole sources to make libraries and"
+	echo "executable CGI binaries. Are you ready?"
+	printf "Press ENTER to continue..."
+	read x
+	echo ""
+}
+
+# Faultless test
+
+faultless_test() {
+	success="1"	# set false
+
+	case "$1" in
+		"$gdbm")
+			if [ -f libgdbm.a ]; then
+				success="0"
+			fi;;
+		"$qDecoder")
+			if [ -f libqDecoder.a ]; then
+				success="0"
+			fi;;
+		"$md5")
+			if [ -f libmd5.a ]; then
+				success="0"
+			fi;;
+		"$adm")
+			if [ -f CrazyAdmin.cgi ]; then
+				success="0"
+			fi;;
+		"$cwb")
+			if [ -f CrazyWWWBoard.cgi ]; then
+				success="0"
+			fi;;
+		"$arc")
+			if [ -f CrazyArchive ]; then
+				success="0"
+			fi;;
+		"*")
+			echo "Argument not found!"
+			exit 1
+			;;
+	esac
+
+	if [ "$success" = "0" ]; then
+		echo "--------------------------------------------------------------------"
+		echo "Faultless Test : SUCCESS"
+		echo "--------------------------------------------------------------------"
+	else
+		echo "--------------------------------------------------------------------"
+		echo "Faultless Test : FAIL"
+		echo "--------------------------------------------------------------------"
+		echo "Something wrong. Please report this failure to developer."
+		echo "Stop processing..."
+		exit 1
+	fi
+}
+
+# Compile
+
+compile() {
+	echo "--[ Compiling whole sources ]---------------------------------------"
+        i="0"
+	for dir in $gdbm $qDecoder $md5 $adm $cwb $arc; do
+		i=`expr $i + 1`
+
+		echo "--------------------------------------------------------------------"
+		printf "Step $i : Making "
+		case "$dir" in
+			"$gdbm")	msg="database embedding engine, libgdbm.a";;
+			"$qDecoder")	msg="CGI library, qDecoder, libqDecoder.a.";;
+			"$adm")		msg="Crazy Administrative Center, CrazyAdmin.cgi";;
+			"$cwb")		msg="CrazyWWWBoard, CrazyWWWBoard.cgi";;
+			"$arc")		msg="Crazy Mail Archiver, CrazyArchive";;
+		esac
+		echo "$msg"
+		echo "--------------------------------------------------------------------"
+
+		cd $dir
+
+		case "$dir" in
+			"$gdbm")
+				./configure
+				$make clean
+				$make all CC="$cc" CFLAGS="$cflags" AR="$ar" ARFLAGS="$arflags" RANLIB="$ranlib"
+			;;
+			"$qDecoder" | $md5)
+				$make clean
+				$make all CC="$cc" CFLAGS="$cflags" AR="$ar" ARFLAGS="$arflags" RANLIB="$ranlib"
+			;;
+			"$adm" | "$cwb" | "$arc")
+				$make clean
+				$make all CC="$cc" CFLAGS="$cflags" EXTLIB="$lcrypt"
+			;;
+		esac
+
+		faultless_test $dir
+		echo ""
+		cd ..
+	done
+}
+
+# Copy CGIs
+
+copy_cgi() {
+	bin="cgi-bin"
+
+	echo "--[ Copying CGI binaries ]------------------------------------------"
+
+	if [ -d $bin ]; then
+		echo "'$bin' directory already exists. Removing directory."
+		rm -rf $bin
+	fi
+	echo "Creating '$bin' directory."
+	mkdir $bin
+
+	echo "Copying '$adm/CrazyAdmin.cgi' -> '$bin/CrazyAdmin.cgi'"
+	cp -p $adm/CrazyAdmin.cgi $bin/CrazyAdmin.cgi
+
+	echo "Copying '$cwb/CrazyWWWBoard.cgi' -> '$bin/CrazyWWWBoard.cgi'"
+	cp -p $cwb/CrazyWWWBoard.cgi $bin/CrazyWWWBoard.cgi
+
+	echo "Copying '$arc/CrazyArchive' -> '$bin/CrazyArchive'"
+	cp -p $arc/CrazyArchive $bin/CrazyArchive
+
+	echo "Adjusting permission to 6755 : '$bin/CrazyAdmin.cgi'"
+	chmod 6755 $bin/CrazyAdmin.cgi
+
+	echo "Adjusting permission to 6755 : '$bin/CrazyWWWBoard.cgi'"
+	chmod 6755 $bin/CrazyWWWBoard.cgi
+
+	echo "Adjusting permission to 6755 : '$bin/CrazyArchive'"
+	chmod 6755 $bin/CrazyArchive
+
+	echo "--------------------------------------------------------------------"
+	echo ""
+
+	if [ -f $bin/CrazyAdmin.cgi ] && [ -f $bin/CrazyWWWBoard.cgi ] && [ -f $bin/CrazyArchive ]; then
+		success_msg
+	else
+		echo "Copying Binaries : FAIL :"
+		echo "Something wrong. Please report this failure to developer."
+		echo "Stop processing..."
+		exit 1
+	fi
+}
+
+################################################################################
+#
+# Main routine
+#
+################################################################################
+
+display_info
+
+check_req_system
+
+check_req_directory
+
+compile
+
+copy_cgi
+
+exit 0
+
+# script end
+

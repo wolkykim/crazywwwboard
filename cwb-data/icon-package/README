@@ -1,0 +1,56 @@
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+_/                                                                    _/
+_/               CrazyWWWBoard Icon-pacakge Project                   _/
+_/                                                                    _/
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+* What is 'CrazyWWWBoard icon-package project' by Nobreak Technologies ?
+  The object is to meet user's desire for various user interface
+  and maximize user's joined force for CrazyWWWBoard.
+  This directory contains several icon-packages..
+
+* How can I change icons
+  You can simply copy one of this which included in this directory
+  to 'cwb-data/icon' directory.
+  ex) 1. cd cwb-data
+      2. mv icon icon.old (To backup default icon-package)
+      3. cp -r icon-package/icon-picaso_blue ./icon (Copy new icon-package)
+
+* Is there any rules about naming icon-package?
+  Yes, Icon-package will be named such as 'icon-NAME_ATMOSPHERE'
+  If some icon-package is modified, for example you just changed color mode
+  remaining base layout, icon-package will be named 'icon-NAME_YOUR ATMOSPHERE'.
+  You can imagine it's layout with reviewing icon-package name.
+
+* Description
+  - icon-netscape
+   o Designed by Netscape 
+     This is based on Nestcape communicator Icon.
+
+  - icon-picaso_blue
+   o Designed by Su-mi Hwang (picaso@nobreak.com), Nobreak Technologies
+     This is normally used by default.
+
+  - icon-picaso_blue_ko
+   o Designed by Su-mi Hwang (picaso@nobreak.com), Nobreak Technologies
+   o Designed for Korean
+
+  - icon-picaso_blue_ko_big
+   o Designed for Korean with big font
+
+  - icon-picaso_blue_notext
+    o Designed by Su-mi Hwang (picaso@nobreak.com), Nobreak Technologies
+    o This icons are same as 'icon-picaso_blue' except missing text.
+
+  - icon-picaso_green
+    o Designed by Su-mi Hwang (picaso@nobreak.com), Nobreak Technologies
+    o This icons are same as 'icon-picaso_blue' but changed background color.
+
+  - etc
+    This is not included in our icon-package
+    This is icon-collection just for your reference.  
+
+* How to join our icon-package project with yours.
+  Please review above package naming and mail to us(support@nobreak.com)
+  with attaching your icons and information.
+

@@ -1,0 +1,496 @@
+#!/bin/sh
+#
+# Developed by 'Seung-young, Kim' at Oct 12, 1998.
+#
+# 'Install-sh' version 1.3.1
+#
+# (c) Nobreak Technologies, Inc.
+#
+
+# yes/no
+
+yesno() {
+	key=""
+
+	while true; do
+		printf "$1 [y/n] : "
+		read key
+		case "$key" in
+			[Yy] | [Yy][Ee][Ss] )
+				break
+			;;
+			[Nn] | [Nn][Oo] ) 
+				if [ "$2" ]; then
+					quit "$2"
+				else
+					quit
+				fi
+			;;
+		esac
+	done
+}
+
+# Finding file in path
+find_file() {
+
+	sys_path="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/ccs/bin:/opt/GCC2721/bin"
+	lib_path="/usr/lib:/lib"
+
+	path="$PATH:$sys_path:$lib_path"
+
+	IFS=":"; tmp=""
+	for dir in $path; do
+		if [ -f "$dir/$1" ]; then
+			tmp=$dir/$1
+			return 0	# true
+		fi
+	done
+	IFS=""
+
+	return 1			# false
+}
+
+# info
+
+display_info() {
+cat << __EOF__
+####################################################################
+## CrazyWWWBoard98PE2 Install Wizard :                            ##
+##                                                                ##
+## Dear our respect user.                                         ##
+##                                                                ##
+## This software is made by 'Nobreak Technologies, Inc.'.         ##
+## And this software is distributed under our license agreement.  ##
+## Thank you very much for your best choice. We really hope that  ##
+## our product helps your business.                               ##
+##                                                                ##
+##    Official distribution site : http://cwb98.nobreak.com       ##
+##                                                                ##
+##                               (c) Nobreak Technologies, Inc.   ##
+####################################################################
+__EOF__
+
+yesno "Do you accept all the terms of the license agreement?" "Sorry, If you don't accept our license agreement, you can not use this product!"
+echo ""
+}
+
+# success message
+success_msg() {
+cat << __EOF__
+--[ SUCCESSFULLY COMPLETED : Install-sh ]---------------------------
+
+Thank you very much!!!
+
+All installation processes are completely successed.
+You can invocate 'CrazyAdmin.cgi'(Password:0000) in your web browser
+to create new databases and to modify other administrative records.
+
+          Purchase information : http://cwb98.nobreak.com
+                 Human contact : support@nobreak.com
+
+           Copyright(c)1996-1998 Nobreak Technologies, Inc.
+--------------------------------------------------------------------
+__EOF__
+}
+
+quit() {
+cat << __EOF__
+$1
+
+Stop processing...
+
+        +-----------------------------------------------------------+
+        |  Official distribution site : http://cwb98.nobreak.com    |
+        |           Technical contact : support@nobreak.com         |
+        |                                                           |
+        |      Copyright(c)1996-1998 Nobreak Technologies, Inc.     |
+        +-----------------------------------------------------------+
+__EOF__
+exit 1
+}
+
+
+# Check required directory to ensure that user has original package.
+check_req_directory() {
+	bin="cgi-bin"
+	conf="conf"
+	data="cwb-data"
+
+	admcgi="$bin/CrazyAdmin.cgi"
+	cwbcgi="$bin/CrazyWWWBoard.cgi"
+	arcbin="$bin/CrazyArchive"
+
+	echo "--[ Checking CGI's Permission ]-------------------------------------"
+	for file in $admcgi $cwbcgi $arcbin; do
+		printf "Checking $file : "
+		if [ ! -f "$file" ]; then
+			echo "Not found!"
+			ERROR="TRUE"	
+		else
+			if [ -f "$file" ] && [ -x "$file" ] && [ -u "$file" ] && [ -g "$file" ]; then
+				echo "OK."
+			else
+				echo "Permission mismatched. Adjusted. OK"
+				chmod 6755 $file
+			fi
+		fi
+	done
+	echo ""
+
+	echo "--[ Checking directories  ]-----------------------------------------"
+	for dir in $conf $data "$data/data" "$data/icon" "$data/icon-stat" "$data/icon-type" "$data/log" "$data/message" "$data/stat"; do
+		printf "Checking $dir : "
+		if [ -d "$dir" ]; then
+			echo "OK."
+		else
+			echo "Not found!"
+			ERROR="TRUE"
+		fi
+	done
+	echo ""
+
+	echo "--[ Checking required system tools  ]-------------------------------"
+	if find_file sendmail; then
+		sendmail=$tmp
+	fi
+
+	if find_file sed; then
+		sed=$tmp
+	fi
+
+	if find_file awk; then
+		awk=$tmp
+	fi
+
+	if find_file hostname; then
+		hostname=$tmp
+	fi
+
+	if find_file rm; then
+		rm=$tmp
+	fi
+
+	printf "Checking sendmail : "
+	if [ "$sendmail" ]; then
+		echo "$sendmail"
+	else
+		echo "Not found!"
+		ERROR="TRUE"
+	fi
+
+	printf "Checking sed : "
+	if [ "$sed" ]; then
+		echo "$sed"
+	else
+		echo "Not found!"
+		ERROR="TRUE"
+	fi
+
+	printf "Checking awk : "
+	if [ "$awk" ]; then
+		echo "$awk"
+	else
+		echo "Not found!"
+		ERROR="TRUE"
+	fi
+
+	printf "Checking hostname : "
+	if [ "$hostname" ]; then
+		echo "$hostname"
+	else
+		echo "Not found!"
+		ERROR="TRUE"
+	fi
+
+	printf "Checking rm : "
+	if [ "$rm" ]; then
+		echo "$rm"
+	else
+		echo "Not found!"
+		ERROR="TRUE"
+	fi
+
+	echo "--------------------------------------------------------------------"
+
+	if [ "$ERROR" ]; then
+		quit "One or more requirements are not found."
+	fi
+
+	printf "Looks good... Press ENTER to continue..."
+	read x
+
+	echo ""
+	echo "From now we will try to install. Answer to the questions please."
+	echo ""
+
+	# Get hostname
+	host=`hostname`
+}
+
+query_in() {
+	echo "  @ You need to enter the full path of the directory where your"
+	echo "    CGI programs are kept. This directory must exist!"
+	echo "    ex) /usr/local/etc/httpd/cgi-bin"
+	echo "    ex) $HOME/public_html/cgi-bin"
+	printf "____________________________________________________________________\r  o INPUT -> "
+	read cgiBin
+
+	printf "    Checking directory '$cgiBin' : "
+	if [ -d "$cgiBin" ]; then
+		if [ -w "$cgiBin" ] && [ -x "$cgiBin" ]; then
+			echo "OK"
+		else
+			quit "Can not write in this directory"
+		fi
+	else
+		quit "Directory not exist."
+		
+	fi
+	echo ""
+
+	echo "  @ You need to enter the full path of the directory where your"
+	echo "    HTML document kept. We will create 'cwb-data' directory under"
+	echo "    this directory and we will copy our stuff under 'cwb-data'."
+	echo "    ex) /usr/local/etc/httpd/htdocs"
+	echo "    ex) $HOME/public_html"
+	printf "____________________________________________________________________\r  o INPUT -> "
+	read docRoot
+
+	printf "    Checking directory '$docRoot' : "
+	if [ -d "$docRoot" ]; then
+		if [ -w "$docRoot" ] && [ -x "$docRoot" ]; then
+			if [ ! -d "$docRoot/$data" ]; then
+				echo "OK"
+			else
+				quit "'$docRoot/$data' already exist."
+			fi
+		else
+			quit "Can not write in this directory"
+		fi
+	else
+		quit "Directory not exist."
+		
+	fi
+	echo ""
+
+	echo "  @ Do you must use 'CGIWrap' to execute CGIs ?"
+        echo "    - Yes, I must use CGIWrap : [y] (Generally NOT)"
+        echo "    - No,  I don't think so   : [n] (Almost Case)" 
+        echo "    If you don't understand this meaning, choose 'n'."
+	while true; do
+		printf "  x xxxxx xx [_]\r  o INPUT -> ["
+		read cgiwrap
+		case "$cgiwrap" in
+			[Yy] )
+				yesno "    Are you sure? Do you really use 'CGIWrap?" "    Please, try again..."
+				cgiwrap="Y"
+				break
+			;;
+			[Nn] )
+				cgiwrap="N"
+				break
+			;;
+		esac
+	done
+	echo ""
+
+	echo "  @ Enter your homepage URL, please..."
+	echo "    ex) http://$host"
+	echo "    ex) http://$host/~$USER"
+	printf "____________________________________________________________________\r  o INPUT -> http://"
+	read homeUrl
+
+	if [ ! "$homeUrl" ]; then
+		quit "Homepage URL must be entered. Try again, please."
+	fi
+	echo ""
+
+	# Making urlRoot for cwb-data
+	echo "$homeUrl" | $awk -F~ '{ print $2 }' > tmp
+	urlRoot=`cat tmp`
+	rm -f tmp
+	if [ "$urlRoot" ]; then
+		urlRoot="/~$urlRoot"
+	else
+		urlRoot=""
+	fi
+
+	echo "  @ Enter your name, please..."
+	echo "    ex) Impellitteri Chris"
+	printf "____________________________________________________________________\r  o INPUT -> "
+	read adminName
+
+	if [ ! "$adminName" ]; then
+		quit "Name must be entered. Try again, please."
+	fi
+	echo ""
+
+	echo "  @ Enter your email address, please..."
+	printf "____________________________________________________________________\r  o INPUT -> "
+	read adminEmail
+
+	if [ ! "$adminEmail" ]; then
+		quit "Email address must be entered. Try again, please."
+	fi
+	echo ""
+
+	echo "  @ Which language do you use familiar? We support below languages."
+	echo "    [en] English , [kr] Korean , [jp] Japanese"
+
+	while true; do
+		printf "  x xxxxx xx [__]\r  o INPUT -> ["
+		read lang
+		case "$lang" in
+			[Ee][Nn] )
+				lang="en"
+				break
+			;;
+			[Kk][Rr] )
+				lang="kr"
+				break
+			;;
+			[Jj][Pp] )
+				lang="jp"
+				break
+			;;
+		esac
+	done
+	echo ""
+
+	echo "  @ Enter 'LICENSE KEY'."
+	echo "    - If you have not registered, just press enter."
+	echo "    - Without 'License Key', you can only use through evaluation."
+        printf "____________________________________________________]\r  o License Key -> ["
+	read licenseKey
+	if [ ! "$licenseKey" ]; then
+		licenseKey="N/A"
+	fi
+	echo ""
+}
+
+# Confirm
+confirm() {
+	echo "--------------------------------------------------------------------"
+	echo ""
+	echo "Dear $adminName"
+	echo ""
+	echo "Now we will do below things to install."
+	echo ""
+	echo "[ CGI-BIN  ] : $cgiBin"
+	echo "[ CWB-DATA ] : $docRoot/$data"
+	if [ "$cgiwrap" = "Y" ]; then
+	echo "[ CGIWrap  ] : Use 'CGIWrap'."
+	else
+	echo "[ CGIWrap  ] : Do not use 'CGIWrap'."
+	fi
+	echo "[ Language ] : $lang"
+	echo "[ License  ] : $licenseKey"
+	echo ""
+	echo "1. Making configuration file 'CrazyWWWBoard.conf'"
+	echo "2. 'CrazyAdmin.cgi' -> '$cgiBin'"
+	echo "3. 'CrazyWWWBoard.cgi' -> '$cgiBin'"
+	echo "4. 'CrazyArchive' -> '$cgiBin'"
+	echo "5. Creating directory '$docRoot/$data' and making sub structures."
+	echo "--------------------------------------------------------------------"
+	yesno "All looks good?" "Please, try again..."
+	echo ""
+}
+
+# Copy : cp -p
+copy() {
+	printf "Copying file '$1' to '$2' : "
+	cp -p "$1" "$2"
+	if [ -f "$2" ]; then
+		echo "OK"
+	else
+		echo "FAIL"
+		echo "ERROR : Something wrong. Please report this failure to developer."
+		quit
+	fi
+}
+
+# Chmod
+adjperm() {
+	echo "Adjusting permission to '$1', '$2' : OK"
+	chmod $1 $2
+}
+
+# Install
+install() {
+	echo "--------------------------------------------------------------------"
+	echo "Step 1 : Generating and auto configuring 'CrazyWWWBoard.conf'"
+	echo "  - License Key = $licenseKey"
+	echo "  - AdminName = $adminName"
+	echo "  - AdminEmail = $adminEmail"
+	echo "  - RealBasePath = $docRoot/cwb-data"
+	echo "  - HtmlBasePath = $urlRoot/cwb-data"
+	echo "  - Help = message/help-$lang.txt"
+	echo "  - Sendmail = $sendmail"
+	$sed -e "s%@LicenseKey@%$licenseKey%" -e "s%@AdminName@%$adminName%" -e "s%@AdminEmail@%$adminEmail%" -e "s%@RealBasePath@%$docRoot/cwb-data%" -e "s%@HtmlBasePath@%$urlRoot/cwb-data%" -e "s%@Help@%message/help-$lang.txt%" -e "s%@Sendmail@%$sendmail%" "$conf/CrazyWWWBoard.conf-dist_$lang" > "$cgiBin/CrazyWWWBoard.conf"
+	echo ""
+
+	echo "Step 2 : Copying CGIs."
+	echo "--------------------------------------------------------------------"
+	copy "$bin/CrazyAdmin.cgi" "$cgiBin/CrazyAdmin.cgi"
+	copy "$bin/CrazyWWWBoard.cgi" "$cgiBin/CrazyWWWBoard.cgi"
+	copy "$bin/CrazyArchive" "$cgiBin/CrazyArchive"
+	echo ""
+
+	echo "--------------------------------------------------------------------"
+	echo "Step 3 : Adjusting Permissions."
+        echo "--------------------------------------------------------------------"
+        if [ "$cgiwrap" = "Y" ]; then
+		echo "CGIWrap Mode :"
+                adjperm "0755" "$cgiBin/CrazyAdmin.cgi"
+		adjperm "0755" "$cgiBin/CrazyWWWBoard.cgi"
+		adjperm "0644" "$cgiBin/CrazyWWWBoard.conf"
+        else
+		echo "Normal Mode :"
+		adjperm "6755" "$cgiBin/CrazyAdmin.cgi"
+		adjperm "6755" "$cgiBin/CrazyWWWBoard.cgi"
+		adjperm "0644" "$cgiBin/CrazyWWWBoard.conf"
+        fi
+	adjperm "6755" "$cgiBin/CrazyArchive"
+	echo ""
+
+	echo "--------------------------------------------------------------------"
+	echo "Step 4 : Copying related data structures."
+	echo "--------------------------------------------------------------------"
+	printf "Copying '$data' to '$docRoot/$data' : "
+	cp -rp "$data" "$docRoot/$data"
+	if [ -d "$docRoot/$data" ]; then
+		echo "OK"
+	else
+		echo "FAIL"
+		quit "ERROR : Something wrong. Please report this failure to developer."
+	fi
+	echo ""
+
+	echo "Successfully completed."
+	printf "Press ENTER to continue..."
+	read x
+	echo ""
+}
+
+
+################################################################################
+#
+# Main routine
+#
+################################################################################
+
+display_info
+
+check_req_directory
+
+query_in
+
+confirm
+
+install
+
+success_msg
+
+exit 0
+
+# script end

@@ -1,0 +1,733 @@
+LicenseKey = @LicenseKey@
+######################################################################
+##                                                                  ##
+##         CrazyWWWBoard.conf Realtime Configuration File           ##
+##                                                                  ##
+##      Official distribution site : http://cwb98.nobreak.com       ##
+##               Technical contact : support@nobreak.com            ##
+##                                                                  ##
+##                                   (c) Nobreak Technologies, Inc. ##
+######################################################################
+##
+## The file(CrazyWWWBoard.conf)is interpreted by CrazyWWWBoard and Cr-
+## azyAdmin.cgi and reflected into excution immediately.
+##
+## CrazyWWWBoard(CWB) has been modified to meet users's various reque-
+## sts for a long time. So we introduce a realtime reference file cal-
+## led 'realtime configuration', for easy and quick modification of C-
+## WB. So most of users do not need to edit source codes.
+##
+## This program needs various configurations, but We already setup th-
+## is file for most of users' environment. If you install CWB for the
+## first time, You had better modify only RealBasePath and HtmlBasePa-
+## th element for your environment and maintain all other setup as de-
+## fault.
+## If you are certified that all of CWB elements runs properly, modify
+## another elments as you want at that time.
+##
+## The file is interpreted by CWB with next rules.
+##
+## 1. Element options are interpreted as following example.
+##    ex) Element Name = Value String
+##
+## 2. If first character is '#', that line is never interpreted.
+##    (commentary)
+##    ex) # comments
+##
+## 3. Element Name and Value String is interpreted by Case Sensitive.
+##
+## 4. Blanks before Element Name, left/right one of '=', one after Va-
+##    lue string are ignored in element options.
+##   ex)  Element Name=Value String
+##        Element Name = Value String
+##        Element Name     =      Value String
+##
+## 5. When you declared same element names, the firt one have effect.
+##
+## In the file, lines which starts with '##' are explanations and '#'
+## are examples of using elements
+## 
+##    CookieEnable     = true       <- interpreted Element
+##    #CookieEnable     = false     <- the Element is commentary.
+##
+## So, Users will be able to modify most of setup by insert or remove
+## '#' in front of elements.
+##
+######################################################################
+
+
+######################################################################
+## [ProgramName]
+##
+## Software automatically detect when CrazyWWWBoard.cgi or CrazyAdmin-
+## .cgi is renamed. This element exist to obtain correct filename of
+## CrazyAdmin.cgi and CrazyWWWBoard.cgi. So, if you renamed CrazyWWWB-
+## oard.cgi, please, modify following file correctly.
+## 
+## However, We feel sad about renaming this file! We think that crazy
+## means a mania, so we named this software made with our enthusiasm
+## CrazyWWWBoard and CrazyAdmin. Using original file name will make us
+## happy.
+##
+######################################################################
+ProgramName = CrazyWWWBoard.cgi
+
+
+######################################################################
+## [AdminName, AdminEmail]
+##
+## Please set Administrator's name and his E-mail address.
+## They will apply to default configuration after creating DB.
+##
+######################################################################
+AdminName = @AdminName@
+AdminEmail = @AdminEmail@
+
+
+######################################################################
+## [RealBasePath, HtmlBasePath]
+##
+## CWB is modified to be installed CGI files and DataBase(DB) files u-
+## nder separate directories. Up to CWB 3.x version Data directory wa-
+## s designed to exist under the directory where CGI exists. However
+## this configuration has made problems such as broken icons according
+## to web server's setup. When users upgrade new version, they have to
+## move existing data to new data directory.
+##
+## So We designed CGI to be installed under CGI directory such as cgi-
+## bin, and the following Data into chidren directory of 'document ro-
+## ot' where normal HTML files reside. Of course same as 3.x version,
+## Data directory can reside under the CGI directory but as mentioned
+## above, we recommend installing CGI and Data separately.
+##
+## /.../cgi-bin/ -+- CrazyAdmin.cgi
+##                +- CrazyAdmin.conf
+##                +- CrazyWWWBoard.cgi
+##                +- CrazyWWWBoard.conf
+##
+## /.../htdocs/.../cwb-data/ -+- data/
+##      ------                +- icon/
+##        |                   +- icon-type/
+##        V                   +- logs/
+##  or /public_html/          +- message/
+##
+## Owing to changing installation method, CGI demand method to find d-
+## irectory where data exist. These two elements provide system with
+## absolute path of cwb-data and HTML on the web.
+##
+## Name of data directory in our release is 'cwb-data'.
+## Above directory will be standard directory of data, icon
+## icon-type, logs, messanges and so on.
+##
+## RealBasePath means absolute system path of cwb-date directory.
+## It refers shown directory when you type pwd command under the cwb-
+## data directory on unix shell.
+##
+## ex) $ cd cwb-data
+##     $ pwd
+##     /home/nobreak/public_html/cwb-data
+##
+##     RealBasePath = /home/nobreak/public_html/cwb-data
+##
+## HtmlBasePath is cwb-data's absoulte path that based on the Http Do-
+## cument Root.i.e. It appears as subtracting domain from cwb-data di-
+## rectory URL on the Web.
+##
+## ex) Internet URL -> http://cwb98.nobreak.com/~nobreak/cwb-data
+##                                             ~~~~~~~~~~~~~~~~~~
+##     HtmlBasePath ->  /~nobreak/cwb-data
+##
+######################################################################
+RealBasePath = @RealBasePath@
+HtmlBasePath = @HtmlBasePath@
+
+
+######################################################################
+## [DefaultCharSet]
+##
+## User can specify CharSet of each DB to prevent broken character un-
+## der the multilanguage environment. i.e. CWB output following conte-
+## nts.
+##
+## <meta .... content="text/html; charset=CharSet">
+##
+## If you specify CharSet on the each DB's administrator screen it wi-
+## ll be used, but if leave blank DefaultCharSet will be used.
+##
+## When most of DB should be set to euc-kr, and only a few DB should
+## be set to x-sjis, this element will be very effective.
+##
+## This element play a roll of explaining to browser how to express c-
+## haracter set other than alphabet. To show multilanguage in one DB
+## is the roll of the browser.
+##
+## If DefaultCharSet and CharSet of DB are set to blank, output will 
+## be nothing.
+##
+## Another reason of using this is to use better font type. For examp-
+## le, when it is set to euc-kr, GULIM font type will be applied.
+##
+## In some Browsers, setting CharSet cause blinking screen.
+##
+## If you use different HTML Header, Tailer in each DB's administrator
+## screen, this function won't be effective. You must type into Header
+## and Tailer by yourself.
+##
+## It doesn't matter that you use without specifying this element und-
+## er the normal state.
+##
+######################################################################
+DefaultCharSet =
+#DefaultCharSet = iso-8859-1
+#DefaultCharSet = euc-kr
+#DefaultCharSet = x-sjis
+
+
+######################################################################
+## [DefaultTitle]
+##
+## You can specify different Browser Titles in each DB(Webboard).
+## If you don't specify any Brower Title in DB, following DefaultTitle
+## will be used as Brower Title.
+##
+######################################################################
+DefaultTitle = CrazyWWWBoard 98 Professional Edition II
+
+
+######################################################################
+## [AllowUpload, UploadSoftLimit, UploadHardLimit]
+##
+## CWB supports file uploading.  This section, explains about elements
+## concerned with file uploading.
+##
+## AllowUpload element can forbid uploading file to any DB. This elem-
+## ent is useful when each DB's administrator is different.  If this
+## element is set to false, file uploading is forbidden to even the DB
+## set to upload enable.
+##
+## UploadSoftLimit and UploadHardLimit element describe the uploading
+## limitation of each DB by Kbyte.
+##
+## UploadSoftLimit is a relative limitation. If the sum of uploaded f-
+## iles is greater than defined value, it only forbids uploading (User
+## can write article) and an attached file should be added.
+##
+## UploadHardLimit is a absolute limitation.  The sum of uploaded fil-
+## es cannot greater than defined value in any cases.  Even if a user
+## succeeds to write an article, uploading will be canceled if the sum
+## of an attached file and uploaded files is greater than the defined
+## value. If the sum of uploaded files is greater than the defined va-
+## lue (in the case of setting up UploadHardLimit later), writing an
+## article will be forbidden.
+##
+## Here is the difference between two elements.
+## When you use UploadSoftLimit, once uploading is allowed, an attach-
+## ed file will be added though the sum of an attached file and alrea-
+## dy uploaded files is greater than the defined value, while UploadH-
+## ardLimit forbid uploading that file.
+## Even if UploadSoftLimit is set to 1024KB, a file whose size is over
+## 3000KB can be added. So in most cases, UploadHardLimit will be used
+## to prevent this confusion.
+##
+## Therefore, UploadHardLimit is valid only if it equals to or is gre-
+## ater than UploadSoftLimit.
+##
+## ex) UploadSoftLimit = 1024
+##     UploadHardLimit = 2048
+##
+## If defined value equals to 0, uploading will not be forbidden.
+##
+## sample) +-------------+---------------+
+##         |   MegaBytes |  UploadLimit  |
+##         +-------------+---------------+
+##         |       1 MB  |      1024     |
+##         |       2 MB  |      2048     |
+##         |       3 MB  |      3072     |
+##         |       5 MB  |      5120     |
+##         |      10 MB  |     10240     |
+##         |      20 MB  |     20480     |
+##         +-------------+---------------+
+##
+######################################################################
+AllowUpload = true
+#AllowUpload = false
+
+UploadSoftLimit = 0
+#UploadSoftLimit = 1024
+
+UploadHardLimit = 0
+#UploadHardLimit = 5120
+
+
+######################################################################
+## [DataDirectory, DataExtension]
+##
+## In this section, I will explain the directory where webboard DB is
+## saved and DB file extention.
+## DataDirectory must be specifed by relative path based on standard
+## RealBasePath. Default set value will be used, if you don't change
+## the value because cwb-data/data directory assigned in release pack-
+## age.
+##
+## CWB adopt GDBM as a DB engine, and GDBM use extention 'gdbm' gener-
+## ally. Let's follow the rule.
+##
+## Location where DB is saved will be
+##   RealBasePath/DataDirectory/DB_NAME.DataExtension
+##
+######################################################################
+DataDirectory = data
+DataExtension = gdbm
+
+
+######################################################################
+## [StatDirectory, StatExtension]
+##
+## Both the directory 'StatDirectory' and 'StatExtension' for file ty-
+## pe should be mentioned so as to see statistic data on web board.
+## StatDirectory needs relative directory path based on standard Real-
+## BasePath. 
+## We reserve it under cwb-data/stat in released pakage.
+## 
+## If StatDirectory remains blank, statistic function will be disable.
+## It means users can't refer statistic data on web board. 
+## Here is the actual path where statistic DB will be placed.
+##   RealBasePath/StatDirectory/DB_NAME.StatExtension
+##
+######################################################################
+StatDirectory = stat
+#StatDirectory =
+StatExtension = stat-gdbm
+
+
+######################################################################
+## [LogDirectory]
+##
+## Log is used for a access statistics and security of each DB.
+## LogDirectory must be specified and used relative path notaion based
+## on RealBasePath. Default set value will be used, if you don't chan-
+## ge the value because cwb-data/data directory assigned in release p-
+## ackage.
+##
+## If you don't want log, because of limited storage capacity, you can
+## set to blank character string as following. In this case CWB's sta-
+## tistics function doesn't collect data any more.
+##   LogDirectory =
+##
+## Location where log is saved will be 
+##   RealBasePath/LogDirectory/adm_access_log     <- CrazyAdmin.cgi
+##                             adm_error_log      <- CrazyAdmin.cgi
+##
+##                             error_log          <- CrazyWWWBoard.cgi
+##                             access_log.DB_NAME <- CrazyWWWBoard.cgi
+##                             error_log.DB_NAME  <- CrazyWWWBoard.cgi
+##
+######################################################################
+LogDirectory =
+#LogDirectory = log
+
+
+######################################################################
+## [AllowDBhtml, HtmlHead, HtmlTail]
+##
+## Basically, CWB output character string such as following onto brow-
+## ser.
+##
+##   --[CGI Output 1]-----------
+##   <html>
+##   <head>
+##     <title>Browse Title</title>
+##     <meta http-equiv="Content-Type" content="text/html;
+##      charset=CharSet">
+##   </head>
+##   --[HtmlHead]-------------
+##   <body ...>
+##   ...
+##   <center>
+##   --[CGI Output 2]-----------
+##   ...
+##   ...
+##   --[HtmlTail]-------------
+##   </center>
+##   ...
+##   </body>
+##   --[CGI Output 3]-----------
+##   </html>
+##
+## File's content specified in HtmlHead and HtmlTail will be output.
+## We call this System Default HTML.
+## 
+## This is available when supporting most of DB with same interface.
+## However, if you want to specify different type to a few DB, You can
+##  use options from the DB's administrator menu.
+##
+## When different Html used by DB, CGI Output 1, 3 as following won't
+## output. So, Users have to specify code of CGI Output 1, 3.
+##
+##   --[DB HTML Header]-----------
+##   <html>
+##   <head>
+##     ...
+##   </head>
+##   <body>
+##   ...
+##   <center>
+##   --[CGI Output]-----------
+##   ...
+##   ...
+##   --[DB HTML Tail]-------------
+##   </center>
+##   ...
+##   </body>
+##   </html>
+##
+## AllowDBhtml void HTML Header, Tailer functions of 
+## DB compulsively. If this is set to false, DBs which used exist
+## DB HTML function are changed to System Default HTML compulsively.
+##
+## Actual location of file is as following, if you don't change the
+## default value.
+##   RealBasePath/HtmlHead
+##   RealBasePath/HtmlTail
+##
+######################################################################
+AllowDBhtml = true
+#AllowDBhtml = false
+
+HtmlHead  = message/htmlhead.html
+HtmlTail  = message/htmltail.html
+
+
+######################################################################
+## [HiddenAdminLink, HiddenStatLink]
+##
+## This is used to hide Administrator access icon and statistics icon
+## which reside on the upper side of each DB. 
+##
+## When you hide icon, you can access through CrazyAdmin.cgi or as fo-
+## llowing.
+##   CrazyWWWBoard.cgi?db=DB_NAME&mode=admin
+##   CrazyWWWBoard.cgi?db=DB_NAME&mode=stat
+##
+######################################################################
+HiddenAdminLink = false
+#HiddenAdminLink = true
+
+HiddenStatLink = false
+#HiddenStatLink = true
+
+
+######################################################################
+## [HiddenHelpLink, Help]
+##
+## HiddenHelpLink element is used to hide help icon from the 
+## screen. Help element is file's actual linked path.
+##
+## Help must be specified by relative path based on HtmlBasePath
+## and interpreted as following.
+##   HtmlBasePath/Help
+##
+######################################################################
+HiddenHelpLink  = false
+#HiddenHelpLink  = true
+
+Help = @Help@
+#Help = YOUR_OWN_HELP.html
+
+
+######################################################################
+## [AllowDBmail, MailHead, MailTail]
+##
+## MailHead and Mailtail describe relative path of file which contains
+## the contents of email header and tail, based on RealBasePath.
+##
+## You can send different messages by each DB, when you set up messages
+## on administration menu of each DBs.
+##
+## AllowDBmail determines allowing whether using email message or not.
+##
+######################################################################
+AllowDBmail = true
+#AllowDBmail = false
+
+MailHead = message/mailhead.txt
+MailTail = message/mailtail.txt
+
+
+######################################################################
+## [Sendmail, SendmailOptions]
+##
+## It specifies location of 'sendmail' that CWB uses to send email.
+##
+######################################################################
+Sendmail = @Sendmail@
+SendmailOptions = -i -t
+
+
+######################################################################
+## [MailName, MailOrganization]
+##
+## It specifies the name which will be used on the From column, and
+## the organization name which will be used on the Organization column
+## in the Email.
+##
+######################################################################
+MailName         = CWB-Mailer
+MailOrganization = Nobreak Technologies, Inc.
+
+
+######################################################################
+## [PageLinkNum]
+##
+## This set the number of article of page link shown below the viewing
+## catalog screen.
+##
+##                                         Total 1/15 Pages
+## [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] - [Next] [15]
+##
+######################################################################
+PageLinkNum = 10
+
+
+######################################################################
+## [TextFieldLength]
+##
+## It regulate size of original text of the list writing screen. 74 is
+## optimized value in the various browser.
+## You can modify this to meet purpose of webboard.
+##
+######################################################################
+TextFieldLength = 74
+
+######################################################################
+## [ReSubject, ReText, ReLine]
+##
+## When relative sentence is written, specfied relative object senten-
+## ces are marked. This element specifies symbols to use in this case.
+##
+## [Original Text]
+## Name    : Nobreak
+## Subject : Hi, this is test.
+## Text    : Good!!!
+##
+## [Quoted Text]
+## Subject : Re: Hi, this is test.
+## Text    : Nobreak wrote:
+##           > Good!!!
+##
+######################################################################
+ReSubject = Re:
+ReText    = wrote:
+ReLine    = >
+
+
+######################################################################
+## [CookieEnable]
+##
+## If CookieEnable set to true, when user write list, user's name 
+## and mail address is registered to user's browser. And these are re-
+## ferred automatically, when the user write next list.
+##
+## However, if it is multiuser environment such as college computer
+## lab this causes chaos because it can refer to old user's name and
+## address. In this case, you can void this function by set to Cookie-
+## Enable = false.
+##
+## CookieExpireDays is a number of day that set value is valid. 30 da-
+## ys is appropriate in most cases.
+##
+######################################################################
+CookieEnable     = true
+#CookieEnable     = false
+
+CookieExpireDays = 30
+
+
+######################################################################
+## [Icon*]
+##
+## It specifies icons linked to each items and relative path based on
+## HtmlBasePath.
+##
+######################################################################
+IconAdminTitle = icon/admintitle.gif
+IconAdmin  = icon/admin.gif
+IconStat   = icon/stat.gif
+IconHome   = icon/home.gif
+IconBack   = icon/back.gif
+IconHelp   = icon/help.gif
+
+IconList   = icon/list.gif
+IconReload = icon/reload.gif
+IconWrite  = icon/write.gif
+IconModify = icon/modify.gif
+IconReply  = icon/reply.gif
+IconDelete = icon/delete.gif
+
+IconUp     = icon/up.gif
+IconDown   = icon/down.gif
+
+IconBlank  = icon/blank.gif
+
+######################################################################
+## [IconType*]
+##
+## It decide icons and types to be shown by uploaded file extention.
+## Basically, it supports a type among following five types.
+##
+## 1. IconType-EXTENSION      = ICON_File     // download
+## 2. IconTypeText-EXTENSION  = ICON_File     // download + Preview
+## 3. IconTypeImage-EXTENSION = ICON_File     // download + View image
+## 4. IconTypeSound-EXTENSION = ICON_File     // download + Play sound
+## 5. IconTypeMovie-EXTENSION = ICON_File     // download + Play movie
+##
+## Number one shows only download link.
+## Number two shows a few lines of ASCII file briefly, when list is
+## read. Number three shows images when list is read.
+## Number four and five are the embbed tag and specified when the upl-
+## oaded file can be played.
+##
+## For example, if there is a music file of 'exam.abc', the file form-
+## at is the same as 'wav', you can play automatically when read list
+## by specifying as following.
+## ex) IconTypeSound-ABC = icon/type/abc.gif
+##
+######################################################################
+IconWidth  = 16
+IconHeight = 16
+IconOpen   = icon/open.gif
+IconClose  = icon/close.gif
+IconOpenNew  = icon/open-new.gif
+IconCloseNew = icon/close-new.gif
+IconTypeDefault = icon-type/default.gif
+IconTypeUnknown = icon-type/unknown.gif
+######################################################################
+## 1. Just download link
+######################################################################
+## Binary Text
+IconType-DOC       = icon-type/text.gif
+IconType-PPT       = icon-type/ppt.gif
+IconType-PS        = icon-type/text.gif
+IconType-HWP       = icon-type/hwp.gif
+## Binary / Executable
+IconType-EXE = icon-type/exe.gif
+IconType-COM = icon-type/com.gif
+IconType-CGI = icon-type/exe.gif
+## Binary / Compressed
+IconType-Z   = icon-type/compressed.gif
+IconType-GZ  = icon-type/compressed.gif
+IconType-TAR = icon-type/compressed.gif
+IconType-TGZ = icon-type/compressed.gif
+IconType-ZIP = icon-type/compressed.gif
+IconType-ARJ = icon-type/compressed.gif
+IconType-RAR = icon-type/compressed.gif
+IconType-LHZ = icon-type/compressed.gif
+IconType-LZH = icon-type/compressed.gif
+## Binary / Device
+IconType-DLL = icon-type/device.gif
+IconType-SYS = icon-type/device.gif
+## Binary /Image which can not display
+IconType-PCX  = icon-type/pcx.gif
+IconType-BMP  = icon-type/bmp.gif
+IconType-ILBM = icon-type/image.gif
+IconType-JIF  = icon-type/image.gif
+IconType-JFIF = icon-type/image.gif
+IconType-IFF  = icon-type/image.gif
+IconType-TGA  = icon-type/image.gif
+IconType-TIF  = icon-type/image.gif
+IconType-TIFF = icon-type/image.gif
+IconType-WMF  = icon-type/image.gif
+IconType-PSD  = icon-type/image.gif
+IconType-RLE  = icon-type/image.gif
+## Binary / Sound clip which can not play
+IconType-RA        = icon-type/ra.gif
+IconType-MP3       = icon-type/mp3.gif
+IconType-MP2       = icon-type/mp3.gif
+######################################################################
+## 2. Auto preview
+######################################################################
+IconTypeText-TXT   = icon-type/txt.gif
+IconTypeText-CFG   = icon-type/text.gif
+IconTypeText-CONF  = icon-type/text.gif
+IconTypeText-SHTML = icon-type/html.gif
+IconTypeText-HTML  = icon-type/html.gif
+IconTypeText-HTM   = icon-type/html.gif
+IconTypeText-BAT   = icon-type/bat.gif
+IconTypeText-C     = icon-type/text.gif
+IconTypeText-CPP   = icon-type/text.gif
+IconTypeText-H     = icon-type/text.gif
+IconTypeText-PL    = icon-type/text.gif
+IconTypeText-TCL   = icon-type/text.gif
+IconTypeText-INI   = icon-type/text.gif
+IconTypeText-RAM   = icon-type/ra.gif
+IconTypeText-M3U   = icon-type/text.gif
+######################################################################
+## 3. Auto display image
+######################################################################
+IconTypeImage-GIF  = icon-type/gif.gif
+IconTypeImage-JPG  = icon-type/jpg.gif
+IconTypeImage-JPE  = icon-type/jpg.gif
+IconTypeImage-JPEG = icon-type/jpg.gif
+IconTypeImage-PNG  = icon-type/png.gif
+######################################################################
+## 4. Auto play sound clip
+######################################################################
+IconTypeSound-AU   = icon-type/sound.gif
+IconTypeSound-WAV  = icon-type/wav.gif
+IconTypeSound-MID  = icon-type/sound.gif
+IconTypeSound-MIDI = icon-type/sound.gif
+######################################################################
+## 5. Auto play vidio clip
+######################################################################
+IconTypeMovie-AVI  = icon-type/movie.gif
+IconTypeMovie-MOV  = icon-type/movie.gif
+IconType-MPG       = icon-type/movie.gif
+IconType-MPEG      = icon-type/movie.gif
+
+
+######################################################################
+## [StatBar*]
+##
+## It specifies icons which will be used by the statistics module. you
+## can specify relative path based on HtmlBasePath.
+##
+######################################################################
+StatBarWidth     = 12
+StatBarMaxHeight = 200
+StatBarUnder     = icon-stat/bar-under.gif
+StatBar90 = icon-stat/bar-90.gif
+StatBar80 = icon-stat/bar-80.gif
+StatBar70 = icon-stat/bar-70.gif
+StatBar60 = icon-stat/bar-60.gif
+StatBar50 = icon-stat/bar-50.gif
+StatBar40 = icon-stat/bar-40.gif
+StatBar30 = icon-stat/bar-30.gif
+StatBar20 = icon-stat/bar-20.gif
+StatBar10 = icon-stat/bar-10.gif
+StatBar00 = icon-stat/bar-00.gif
+
+
+######################################################################
+## [PreviewLines]
+##
+## It show a part of file, if uploaded file is to follow IconType-
+## Text-EXTENSION type. In this case, you can specify a number of lin-
+## es to preview. If you set to 0, it show all contents of file.
+##
+######################################################################
+PreviewLines = 10
+#PreviewLines = 0
+
+
+######################################################################
+## [CryptSalt]
+##
+## It specifies 16 bit key used as password encoding.
+## Modifying this element can cause problem of DB incompatibility.
+## So don't Modify.
+##
+######################################################################
+CryptSalt = SY
+
+
+## END ###############################################################

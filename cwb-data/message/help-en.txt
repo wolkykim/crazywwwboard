@@ -1,0 +1,1675 @@
+==================================================================
+
+            CrazyWWWBoard 98 Professional Edition II
+
+              Powered by Nobreak Technologies, Inc.
+
+==================================================================
+
+C O N T E N T S
+
+1. License Agreement
+2. Software & Contact Information
+3. Registration
+4. Installation
+5. Usage
+6. Frequently Asked Questions
+
+
++--------------------------------------------------------------------+
+| I. License Agreement			                             |
++--------------------------------------------------------------------+
+
+I-1. General Information
+
+This software, CrazyWWWBoard 98 PE II
+(1) This is a commercial software to be payed before using .
+
+(2) This agreement doesn't transfer any copyright of our product
+but allow a user to use this software.
+
+(3) This agreement is in effect since a user install this software 
+and is allowed to use after making a full payment.
+
+I-2. Permission
+
+A user can
+(1) install and use the software onto a server which is within a net-
+work.
+
+(2) make a copy of the software and data derived from our product
+for backup.
+
+(3) distribute unmodified copies of this software unlimitedly.  How-
+ever, all the copyrights are reserved by 'Nobreak Technologies Inc'.  
+
+
+(4) A third party can use our product under Nobreak's agreement and 
+Supplier(distributer) can be defined one that distribute our product 
+with agreement with  Nobreak Technologies Inc
+
+ 
+I-3. Limitation 
+
+(1) A registered user can modify source code of this software and i-
+ncluded files(HTML, txt, image) only to meet the server environment. 
+In other case, a user should get a permission from 'Nobreak'.
+
+
+I-4. Warranty
+
+'Nobreak'
+(1) do not warranty for the usage and performance since we supplies 
+this software in best condition and . But best service and fonfident-
+ial solution will be supported for a user paid and used.
+ 
+(2) do not warraty for performance and result caused by using  produ-
+ct or docementation. But will do our best to solve the bug notified 
+by users.
+
+(3) do not warraty for the case against a third party's privilege or 
+rightness to spectial purpose.
+
+I-5. Limitation of compensation
+
+The compensation from 'Nobreak' cannot exceed to the software price.
+
+I-6. Copyright and patent
+
+Nobreak and official suppliers have the copyrights. And this software
+is protected by Korean and international copyrights and patent laws.
+
++------------------------------------------------------+
+| II. SOFTWARE & CONTACT INFORMATION)                  |
++------------------------------------------------------+
+
+II-1. Software Information)
+- Name            : CrazyWWWBoard
+- Version         : 98 Professional Edition II
+- Type            : Common Gateway Interface
+- Use             : Web based Public Bulletin Board, Public Morgue
+- Platform        : All kind of UNIX, Windows NT
+- Distributer     : Nobreak Technologies, Inc.
+- Distribute site : http://cwb98.nobreak.com
+
+II--2. Contact Information
+* American and Other english user
+  - Purchase 	Information	: sales@nobreak.com
+  - Technical	Contact 	: support@nobreak.com
+  
+
+* Korean user
+  - Purchase 	Information 	: sales-kr@nobreak.com
+  - Technical 	Contact   	: support-kr@nobreak.com
+
+* Japanese user
+  - Purchase 	Information	: sales-jp@nobreak.com
+  - Technical 	Contact		: support-jp@nobreak.com
+
++-----------------------------------------------------+
+| III. Download and Registration                      |
++-----------------------------------------------------+
+
+III-1. Download from web site.
+  More information is available at the following site.
+  - http://cwb98.nobreak.com
+  
+III-2. Asking by Email
+  If using web is not applicable ask by email.
+  - sales@nobreak.com
+
++-----------------------------------------------------+
+| IV. Installation 			              |
++-----------------------------------------------------+
+
+IV-1. Download package
+
+Download at the following sites.
+  - http://cwb98.nobreak.com
+
+Download following compressed file which meets the most used platfor-
+ms' environment is available.
+
+  - CrazyWWWBoard98PE2-export-PLATFORM.tar.Z
+  - ex) CrazyWWWBoard98PE2-export-sparc_sun_solaris_2.6.tar.Z
+
+  * To patch bugs packages can be repacked and the version will be n-
+    amed by following rule..
+  - CrazyWWWBoard98PEp?-export-PLATFORM.tar.Z  
+    ('?' is a number starting from '1'.)
+
+IV-2. Uncompression
+
+Firstly, move the package to temporary directory on the system. Home 
+directory should be O.K. Pakage was tarred with many files and th-
+en compressed by compression software such as gzip and compress.  so 
+following steps help you to untar and uncompres Pakage.
+
+  1) Uncompress CrazyWWWBoard98PE.tar.gz
+    $ ls
+      CrazyWWWBoard98PE2-export-PLATFORM.tar.Z
+ 
+    $ uncompress
+      CrazyWWWBoard98PE2-export-PLATFORM.tar.Z
+ 
+    $ ls
+      CrazyWWWBoard98PE2.tar
+
+    $ tar xvfp CrazyWWWBoard98PE2.tar
+    ./CrazyWWWBoard98PE2/...
+
+
+caution) Pay attention to upper and lower case.
+
+    
+IV-3. Installation
+
+Following the uncompressing, Execute Install Wizard, Install-sh on  -
+the CrazyWWWBoard98PE2. While performing Install-sh, you will be ask-
+ed some input data.  Following is the requested question.
+
+  1.'cgi-bin' directory where cgi program will be placed.
+     ex) /home/nobreak/public_html/cgi-bin (Account User)
+     ex) /usr/local/etc/httpd/cgi-bin (Server Administrator)
+
+  2. 'HTML document root' where HTML document will be kept. We will -
+     create 'cwb-data' directory under this directory and the related 
+     stuff under 'cwb-data' will be copied. 
+     ex) /home/nobreak/public_html (Account User)
+     ex) /usr/local/etc/httpd/htdocs (Server Administrator)
+
+  3. Question to Using CGIWrap 
+     If you execute cgi on web such like 'http://YOUR DOMAIN/cgi-bin/
+     cgiwrap/YOUR ID/CGI_NAME.cgi, Choose 'Y'. 'Y' is generally case. 
+     Otherwise 'N' must be selected. 
+
+  4. Homepage URL 
+
+  5. User Name 
+
+  6. User E-Mail 
+
+  7. Language which you use help file in. There is no relation to cgi
+     program. 
+
+  8. License Key on condition that you have already it. But you can 
+     skip without inputing license key when first installing. Some f-
+     aculty will not work without license key, so you must add later 
+     through Global Configuration of CrazyAdmin.cgi on the web.
+
+
+
+  +--[ Directory Hierarchy ]----------------------------------+
+  |                                                           |
+  |  /.../cgi-bin/ -+- CrazyAdmin.cgi                         |
+  |                 +- CrazyAdmin.conf                        |
+  |                 +- CrazyWWWBoard.cgi                      |
+  |                 +- CrazyWWWBoard.conf                     |
+  |                 +- CrazyArchive                           |
+  |                                                           |
+  |  /.../public_html/cwb-data/ -+- data/                     |
+  |       ~~~~~~~~~~~ ~~~~~~~~   +- message/                  |
+  |       or htdocs              +- icon/                     |
+  |                              +- icon-type/                |
+  |                              +- icon-stat/                |
+  |                              +- stat/                     |
+  |                              +- log/                      |
+  |                                                           |
+  +-----------------------------------------------------------+
+
+
+ 
+
+
+Processing should be same as followings.
+
+  $ ./Install-sh (Take note of lower/upper case)
+  ###################################################################
+  ## Messages...                                                   ##
+  ###################################################################
+  Do you accept all the terms of the license agreement? [y/n] : y
+
+  --[ Checking CGI's Permission ]------------------------------------
+  Checking CGI : cgi-bin/CrazyAdmin.cgi : OK.
+  Checking cgi-bin/CrazyWWWBoard.cgi : OK.
+  Checking cgi-bin/CrazyArchive : OK.
+
+  --[ Checking directories  ]----------------------------------------
+  Checking...
+  -------------------------------------------------------------------
+  Looks good...
+
+  From now we will try to install. Answer to the questions please.
+
+  @ You need to enter the full path of the directory where your
+    CGI programs are kept. This directory must exist!
+  o INPUT -> /home/nobreak/public_html/cgi-bin______________________
+
+  @ You need to enter the full path of the directory where your
+    HTML document kept. We will create 'cwb-data' directory under
+    this directory and we will copy our stuff under 'cwb-data'.
+  o INPUT -> /home/nobreak/public_html______________________________
+
+  @ Do you must use 'CGIWrap' to execute CGIs ?
+    - Yes, I must use CGIWrap : [y] (Generally NOT)
+    - No,  I don't think so   : [n] (Almost Case)
+    If you don't understand this meaning, choose 'n'.
+  o INPUT -> [n]
+
+  @ Enter your homepage URL, please... 
+  o INPUT -> http://nobreak.nobreak.ne.kr___________________________
+
+  @ Enter your name, please...
+  o INPUT -> Seung-young Kim________________________________________
+
+  @ Enter your email address, please... 
+  o INPUT -> nobreak@nobreak.com____________________________________
+
+  @ Which language do you use familiar? We support below languages.
+    English : [en] , Korean : [kr] , Japanese : [jp]
+  o INPUT -> [kr]
+
+  @ Enter 'LICENSE KEY'.
+    - If you have not registered, just press enter.
+    - Without 'License Key', you can only use through evaluation.
+  o License Key -> [ABCDEFGHIJKLMNOPQRSTUVWXYZHI]
+]
+  -------------------------------------------------------------------
+  Now we will do below things to install.
+
+  [ CGI-BIN  ] : /home/power/nobreak/public_html/cgi-bin
+  [ CWB-DATA ] : /home/power/nobreak/public_html/cwb-data
+  [ CGIWrap  ] : Do not use 'CGIWrap'.
+  [ Language ] : kr
+  -------------------------------------------------------------------
+  All looks good?  [y/n] : y
+
+  .
+  .
+
+  SUCCESSFULLY COMPLETED
+
+  After installation, Please check whether the directory structure is
+  same as mentioned above.
+
+ 
+IV-4. Test
+
+After installation, there are two CGI in the cgi-bin directory, purp-
+oses of each CGI are same as following.
+
+  - CrazyAdmin.cgi
+    (Administration menu, creates DB and configure the most environm-
+    ents of CWB)
+
+  - CrazyWWWBoard.cgi
+    (Executable part, used as 'CrazyWWWBoard.cgi?db=DB_NAME')
+
+  - CrazyArchive
+    (Automatically record posted E-mail message  in web board)
+
+First of all, run CrazyAdmin.cgi to create test DB named test.
+  - ex) http://DOMAIN/~nobreak/cgi-bin/CrazyAdmin.cgi
+
+Follow Step 1 - Setp 5.
+
+                                 [__] : input window , [XXX] : button 
+==[CrazyAdmin.cgi Step1]=============================================
+
+                    CrazyWWWBoard Administrative Center
+
+---------------------------------------------------------------------
+
+                         LICENSE KEY IS VERIFIED
+
+                    P a s s w o r d : [****___________]
+
+                                [ E N T E R ]
+
+
+---------------------------------------------------------------------
+                      (c) Nobreak Technologies, Inc.
+
+=====================================================================
+The password is setted by '0000' first. Please type '0000' to enter.
+
+==[CrazyAdmin.cgi Step2]=============================================
+
+                   CrazyWWWBoard Administrative Center
+ --------------------------------------------------------------------
+
+ +-------+----+------------+------------------+--------------+------+
+ |       |    |  Articles  |   Ststisistics   |              |      |
+ |DB Name|Type+-----+------+-------+-----+----+    Options   |Remove|
+ |       |    |Total|Upload|Started|Total| Avg|              |      |
+ +-------+----+-----+------+-------+-----+----+--------------+------+
+ |  T O T A L |  0/0|  0.0M|unknown|  0/0|   0| Powered by Nobreak  |
+ +------------+-----+------+-------+-----+----+ Technologies, Inc.  |
+ | [test____] | [CREATE NEW DATABASE]         |             [Reload]|
+ +------------+-------------------------------+---------------------+
+
+        [CHANGE PASSWORD] [MODIFY MESSAGES] [GLOBAL CONFIGURATION]
+
+ --------------------------------------------------------------------
+                    (c) Nobreak Technologies, Inc.
+
+=====================================================================
+Create new DB by typing 'test', DB name in the input window and clic-
+king the [CREATE NEW DATABASE] button.
+
+caution) You cannot use blank, dot, comma, hyphen, and under bar for 
+DB name. You can use only alphabet(case sensitive) and numbers.
+
+==[CrazyAdmin.cgi Step3]=============================================
+
+                   CrazyWWWBoard Administrative Center
+ --------------------------------------------------------------------
+
+                                                                      
+ +-------+-----+------------+-----------------+---------------+---------+
+ |       |     |  Articles  |   Ststisistics  |               |         |
+ |DB Name|Type +-----+------+-------+-----+---+    Options    |  Remove |
+ |       |     |Total|Upload|Started|Total|Avg|               |         |
+ +-------+-----+-----+------+-------+-----+---+---------------+---------+
+ |  test |empty|  0/0|  0.0M|unknown|  0/0|  0|[V][C][S][s][L]|[D][s][L]|
+ +-------------+-----+------+-------+-----+---+---------------+---------|
+ |  T O T A L  |  0/0|  0.0M|unknown|  0/0|  0| Powered by Nobreak      |
+ +-------------+-----+------+-------+-----+---+ Technologies, Inc.      |
+ | [test____]  | [CREATE NEW DATABASE]        |               [Reload]  |
+ +-------------+------------------------------+-------------------------+
+      [CHANGE PASSWORD] [MODIFY MESSAGES] [GLOBAL CONFIGURATION]
+
+ -----------------------------------------------------------------------
+                     (c) Nobreak Technologies, Inc.
+
+=====================================================================
+If new DB test is created, configure following items of test DB by c-
+licking [CONF] button.
+
+==[CrazyAdmin.cgi Step4]=============================================
+
+                 CrazyWWWBoard 98 Professional Edition II
+        ------------------------------------------------------------
+        +----------------------------------------------------------+
+        |                  Web Board Information                   |
+        +----------------------------------------------------------+
+        | New Password : [******__] Re-enter Password : [******__] |
+        +----------------------------------------------------------+
+
+        +----------------------------------------------------------+
+        |            Administrator Contact Information             |
+        +----------------------------------------------------------+
+        | Administrator Name  :  [Seung-young, Kim_______________] |
+        | Administrator Email :  [nobreak@nobreak.com____________] |
+        +----------------------------------------------------------+
+        ------------------------------------------------------------
+        [Reset]                 [ S a v e ]                   [List]
+
+==========================================================================
+Keep the default values only except above items and then click the 
+[Save] button to save configuration.
+
+Tip) If you call the CWB without configure DB, administration menu a-
+ppears automatically, in 10 seconds with welcome message.  This is u-
+seful when the web administrator is different from DB administrator.  
+Because the DB administrator can configure the DB without running Cr-
+azyAdmin.cgi.
+
+==[CrazyAdmin.cgi Step5]=============================================
+
+                  CrazyWWWBoard 98 Professional Edition II
+        ------------------------------------------------------------
+
+        [Admin] [Statistics]   Searched Articles : 0/0 , Pages : 0/0
+        +----+---+--------------------------+--------+------+------+
+        | No |(c)|      S u b j e c t       |  Name  | Date | Hits |
+        +----+---+--------------------------+--------+------+------+
+
+        ------------------------------------------------------------
+                           Name o
+        [Home] [Help]   Subject x [______] [Go!!]   [Write] [Reload]
+                           Text x
+
+                      (c) Nobreak Technologies, Inc.
+
+=====================================================================
+If you can see the menu without problems such as broken ions, instal-
+lation is successful.
+
+Now you can use CWB by inserting HTML tag in the HTML page or inputt-
+ing following URL in the input window of browser.
+
+  - HTML TAG :
+    <a href="/~nobreak/cgi-bin/CrazyWWWBoard.cgi?db=test">Bulletin B-
+    oard</a>
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~
+  - Browser Location :
+    http://DOMAIN/~nobreak/cgi-bin/CrazyWWWBoard.cgi?db=test
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+caution) Remember that CrazyAdmin.cgi is the tool for the administrat-
+or and CrazyWWWBoard is the CGI for the users.  Each DB has different 
+administrator and passwords.  If a DB administrator lose the password 
+then the administrator can change password in the CrazyAdmin.cgi.
+
+
++--------------------------------------------------------------------+
+| V. Usage                                                           |
++--------------------------------------------------------------------+
+
+V-1. Directory structures
+
+ cgi-bin/
+
+  cwb-data/ -+- data/
+             +- message/
+             +- icon
+             +- icon-type
+             +- icon-stat
+             +- stat/
+             +- log/
+
+* cgi-bin directory
+  - CrazyAdmin.cgi      : CrazyWWWBoard Administrative Center CGI
+  - CrazyAdmin.conf     : CrazyAdmin.cgi configuration file
+  - CrazyWWWBoard.cgi   : CrazyWWWBoard CGI
+  - CrazyWWWBoard.conf  : CrazyWWWBoard.cgi configuration file
+  - CrazyArchive        : CrazyArchive CGI
+
+* cwb-data/data directory
+  - DB_NAME.gdbm        : CWB DB file
+  - DB_NAME             : directory where uploaded files to DB are saved
+
+* cwb-data/message directory
+  - htmlhead.html       : HTML header of CWB
+  - htmltail.html       : HTML footer of CWB
+  - mailhead.txt        : Header of email
+  - mailtail.txt        : Footer of email
+  - help*.*             : HELP file to which help icon is linked
+     
+* cwb-data/icon directory
+  - *.gif               : Icon which is used for CWB
+
+* cwb-data/icon-type directory
+  - *.gif               : File type displaying Icon in the CWB
+
+* cwb-data/icon-stat directory
+  - *.gif               : Icon which is used for statistic module
+
+* cwb-data/stat directory
+  - *.stat-gdbm         : DB file recording  statistic data for DB 
+
+* cwb-data/logs directory
+  - adm_access_log      : CrazyAdmin.cgi access log
+  - adm_error_log       : CrazyAdmin.cgi error log
+  - error_log           : CrazyWWWBoard.cgi error log
+  - access_log.DB_NAME  : DB access log
+  - error_log.DB_NAME   : DB error log
+
+
+V-2. CrazyAdmin.cgi usage
+
+==[CrazyAdmin.cgi main window]============================================
+
+                   CrazyWWWBoard Administrative Center
+ -----------------------------------------------------------------------
+ +-------+-----+-------------+------------------+---------------+---------+
+ |       |     |  Articles   |   Ststisistics   |               |         |
+ |DB Name|Type +------+------+-------+------+---+    Options    |  Remove |
+ |       |     |Total |Upload|Started|Total |Avg|               |         |
+ +-------+-----+------+------+-------+------+---+---------------+---------+
+ |nobreak|pub  | 0/33 |  3.0M| 980901| 12/97| 10|[V][C][S][s][L]|[D][s][L]|
+ +-------------+------+------+-------+------+---+---------------+---------|
+ |  qna  |pub  | 0/13 |  0.0M| 980831| 1/301| 23|[V][C][S][s][L]|[D][s][L]|
+ +-------------+------+------+-------+------+---+---------------+---------|
+ |  test |empty| 0/67 |  0.0M| 980911| 4/201| 14|[V][C][S][s][L]|[D][s][L]|
+ +-------------+------+------+-------+------+---+---------------+---------|
+ |  T O T A L  | 0/103|  3.0M| 980831|17/599| 16| Powered by Nobreak      |
+ +-------------+------+------+-------+------+---+ Technologies, Inc.      |
+ | [________]  | [CREATE NEW DATABASE]          |               [Reload]  |
+ +-------------+--------------------------------+-------------------------+
+        [CHANGE PASSWORD] [MODIFY MESSAGES] [GLOBAL CONFIGURATION]
+ -----------------------------------------------------------------------
+                     (c) Nobreak Technologies, Inc.
+
+==========================================================================
+
+* [CREATE NEW DATABASE] button
+A new DB is created by inputting a new DB name in the input window.  
+If you input unallowed characters(other than A-Z, a-z, 0-9), you will
+see the error message, 'Only regular expression(0-9, A-Z, a-z) is al-
+lowed for the database name.'
+
+* Options
+[V] button (VIEW) : shows DB
+[C] button (CONF) : shows configuration menu of DB
+[S] button (STAT) : shows access statistics of DB
+[s] button (SYNC) : reorganizes DB
+[L] button (LOG)  : shows logging data to access to DB
+
+caution) SYNC reorganizes DB.  You don't have to use it, however you-
+can increase the CWB performance a little bit, if you use SYNC when 
+every 10,000 articles are added to DB. Frequent reorganization is not
+recommended, though it doesn't harm to DB.  Even if you never reorga-
+nize, there will be no problem.
+
+* Remove items
+[D] button (DB)  : deletes DB(including log, uploaded files and refe-
+                   rence files)
+[s] button (STAT): clear access statistics of DB                
+[L] button (LOG) : deletes DB's log. Log will be initialized.
+
+
+* [CHANGE PASSWORD] Button
+changes the password of CrazyAdmin.cgi
+
+Password is save in the CrazyAdmin.conf after coded. Though, password
+is save after coded, it is recommended to keep file permission 0600, 
+to prevent other users' accessing.
+
+  $ ls -al CrazyAdmin.conf
+   -rw-------   1 nobreak  power     13 Mar 28 15:32 CrazyAdmin.conf
+
+==[CrazyAdmin.cgi password window]===================================
+
+                   CrazyWWWBoard Administrative Center
+ --------------------------------------------------------------------
+            +----------------------------------------------+
+            |         C h a n g e    P a s s w o r d       |
+            +-------------------+--------------------------+
+            |    New Password   | [******________________] |
+            +-------------------+--------------------------+
+            | Re-enter Password | [******________________] |
+            +-------------------+--------------------------+
+
+                         [ APPLY NEW PASSWORD ]
+
+                                 [Back]
+ --------------------------------------------------------------------
+                     (c) Nobreak Technologies, Inc.
+
+=====================================================================
+
+* [MODIFY MESSAGES] Button
+
+==[Change CrazyAdmin.cgi message window]=============================
+
+              CrazyWWWBoard Administrative Center
+ --------------------------------------------------------------------
+
+ +------------------------------------------------------------------+
+ |                        System Default HTML Messages              |
+ +------------+-----------------------------------------------------+
+ | CWB Output | <html><head><title>BROWSER TITLE</title></head>     |
+ +------------+-----------------------------------------------------+
+ |            | +------------------------------------------------++-|
+ | HTML Header| | 'cwb-data/message/htmlhead.html'               || |
+ |            | +------------------------------------------------++ |
+ +------------+-----------------------------------------------------+
+ | CWB Output |                   Main Contents HERE                |
+ +------------+-----------------------------------------------------+
+ |            | +------------------------------------------------++ |
+ | HTML Tailer| | 'cwb-data/message/htmltail.html'               || |
+ |            | +------------------------------------------------++ |
+ +------------+-----------------------------------------------------+
+ | CWB Output | </html>                                             |
+ +------------+-----------------------------------------------------+
+
+ +------------------------------------------------------------------+
+ |                       System Default Email Messages              |
+ +------------+-----------------------------------------------------+
+ |            | +------------------------------------------------++ |
+ |Email Header| | 'cwb-data/message/mailhead.html'               || |
+ |            | +------------------------------------------------++ |
+ +------------+-----------------------------------------------------+
+ | CWB Output |               Contents of article HERE              |
+ +------------+-----------------------------------------------------+
+ |            | +------------------------------------------------++ |
+ |Email Tailer| | 'cwb-data/message/mailtail.html'               || |
+ |            | +------------------------------------------------++ |
+ +------------+-----------------------------------------------------+
+
+                              [ SAVE MESSAGES]
+
+ --------------------------------------------------------------------
+                     (c) Nobreak Technologies, Inc.
+
+=====================================================================
+
+'System Default HTML Messages' will be used as a header and footer w-
+hen the CWB displays HTML files such as article list. CWB Output part 
+will be generated automatically by CWB.
+
+ex) HTML Header
+  <body bgcolor='white'>
+  <center>CrazyWWWBoard 98 Professional Edition ¥±</center><br>
+  <center>
+
+ex) HTML Tailer
+  </center>
+  <center>(c) Nobreak Technologies, Inc.</center>
+  </body>
+
+'System Default Email Messages' is the header and footer of Email se-
+nt to the article poster.
+
+ex) Email Header
+  + New article is posted. 
+
+ex) Email Tailer
+  + Powered by Nobreak Technologies, Inc.
+
+==[Example]==========================================================
+  + New article is posted.
+  -- [ Article Information ]-----------------------------------------
+   Name     : Seung-young, Kim (mailto:nobreak@nobreak.com)
+   Subject  : Re: Korea FreeBSD Users Group
+   View     : http://..../CrazyWWWBoard.cgi?db=cwb&mode=read&num=45
+   Reply    : http://..../CrazyWWWBoard.cgi?db=cwb&mode=reply&num=45
+  -- [ Contents ]----------------------------------------------------
+  ...
+  ...
+  ---[ End ]---------------------------------------------------------
+  + Powered by Nobreak Technologies, Inc.
+=====================================================================
+
+Tip) Each DB can use different HTML header and footer.  In this case,
+     CWB will not use the header and footer of system, but those of 
+     DB.  Email header and footer works same way.
+
+Tip) You can get the same result by directly editing the reference f-
+     iles which reside under the cwb-data/messages/ directory on the
+     shell.
+
+* [GLOBAL CONFIGURATION] Button
+
+This is the menu to modify CrazyWWWBoard.conf which is the configura-
+tion file of CWB.  You will get the same result by using 'vi CrazyWW-
+WBoard.conf' command on the shell.
+
+==[CrazyAdmin.cgi Message Modification Window]=======================
+
+                    CrazyWWWBoard Administrative Center
+ --------------------------------------------------------------------
+
+ +------------------------------------------------------------------+
+ |                      Global Configuration                        |
+ +------------------------------------------------------------------+
+ |  +-----------------------------------------------------------++  |
+ |  | 'cgi-bin/CrazyWWWBoard.conf'                              ||  |
+ |  |                                                           ||  |
+ |  | ex) ElementName = ValueString                             ||  |
+ |  | AllowUpload = true                                        ||  |
+ |  +-----------------------------------------------------------++  |
+ +------------------------------------------------------------------+
+
+                          [ SAVE CONFIGURATION]
+
+ --------------------------------------------------------------------
+                     (c) Nobreak Technologies, Inc.
+
+=====================================================================
+
+Modify each elements, referring the annotation.  Most Elements are s-
+etup to adequate to the most systems' environments.  Following eleme-
+nts are most important ones. ('*'marked elements should be confirmed)
+
+  * RealBasePath      : System path of cwb-data directory
+  * HtmlBasePath      : HTML path of cwb-data directory
+  - DefaultCharSet    : Character set of client which will display C-
+                        WB output.
+  * DefaultTitle      : Title shown on the browser
+  - AllowUpload       : Prohibit uploading
+  - UploadLimit       : Limit the uploding file size.
+  - AllowDBhtml       : Prohibit using different HTML Headers & Tail-
+                        ers of each DB.  
+  - HiddenAdminLink   : Hiding the Admin icon from the CWB article l-
+                        ist.
+  - HiddenStatLink    : Hiding the Statistics icon from the CWB arti-
+                        cle list.
+  - HiddenHelpLink    : Hiding the Help icon from the CWB article list.
+  - AllowDBmail       : Prohibit using different Email Headers & Tai-
+                        lers of each DB.
+  * SendmailDirectory : System path where 'sendmail' program resides.
+  * MailOrganization  : Organization name added to Email
+
+V-3. Using CrazyWWWBoard.cgi
+
+First of all, create a DB using 'CrazyWWWBoard Administrative
+Center'(CrazyAdmin.cgi), then insert link of bulletin to the html fi-
+les. Add following link to your HTML files.
+
+  - <a href="http://..../cgi-bin/CrazyWWWBoard.cgi?db=DB_NAME">Board
+    </a>
+  - <a href="/~nobreak/cgi-bin/CrazyWWWBoard.cgi?db=DB_NAME">Board
+    </a>
+
+Adding a link is the final stage of work.
+
+>From now on, you will read the shape and functions of bulletin.
+
+==[CrazyWWWBoard.cgi?db=DB_NAME Example]===============================
+
+                CrazyWWWBoard 98 Professional Edition II
+ -----------------------------------------------------------------------
+ [Admin] [Statistics]        Searched Articles : 110/110 , Pages : 20/22
+ +----+---+---------------------------+-----------------+---------+----+
+ | No |(c)|      S u b j e c t        |       Name      |   Date  |Hits|
+ +----+---+---------------------------+-----------------+---------+----+
+ | 15 | # |+ I need qDecoder          | Sang-hyun, Park |Mar 23,98| 75 |
+ +----+---+---------------------------+-----------------+---------+----+
+ | 14 | # |   + Re: I need qDecoder   |  Gyu-sang, Cho  |Apr 08,98|  8 |
+ +----+---+---------------------------+-----------------+---------+----+
+ | 13 | @ |      - Re: Here it is...  |  Jin-soo, Park  |Apr 12,98| 22 |
+ +----+---+---------------------------+-----------------+---------+----+
+ | 12 | # |   - Re: I need qDecoder   | Young-phil, Kim |Apr 09,98|  3 |
+ +----+---+---------------------------+-----------------+---------+----+
+ | 11 | @ |- Photo of Jailman pants   | Chang-gyun, Doo |Feb 23,98| 18 |
+ +----+---+---------------------------+-----------------+---------+----+
+      [1][Prev]-[11][12][13][14][15][16][17][18][19][20]-[Next][22]
+ -----------------------------------------------------------------------
+                           Name o
+ [Home] [Back] [Help]   Subject x [______] [Go!!]   [Backward] [Forward]
+                           Text x                      [Write] [Reload]
+
+                      (c) Nobreak Technologies, Inc.
+========================================================================
+
+Tip) CWB shows extra info using a status bar of the Browser.  If you 
+     point a title, following info will be displayed on the status bar.
+
+      - Physical number 14 , Virtual number 8, Included 32 lines
+
+     This means that the article's sequence number in the DB is 14, t-
+     hat the article's displayed order is 8th (Because some articles 
+     are deleted) and that the article contains 32 lines.
+     
+* [Admin] Link
+Leads to the DB Admin menu.  The same menu which you get by clicking 
+[CONF] button in the CrazyAdmin.cgi.  You can configure DB two ways a-
+s mentioned above.  If you want to configure the DB only in the Crazy-
+Admin.cgi(want to delete Admin icon), set HiddenAdminIcon to true in 
+the Global Configuration Menu of CrazyAdmin.cgi.
+
+* [Statistics] Link
+Shows the statistics of DB.
+If you don't want users to access the statistics, set the HiddenStat-
+Icon to true in the global Configuration of CrazyAdmin.cgi.
+
+* Searched Articles : Meaning of 110/110
+First 110 is the number of searched articles, next 110 means the num-
+ber of total articles. If a user doesn't use search window, these tw-
+o values are same.  However, when a user use search windows that val-
+ue will be changed like 23/110.
+
+* Pages : Meaning of 20/22
+20/22 means that the total page is 22 and current page is 20th page 
+of 22.
+
+* [Home] Link
+Leads to the home page which is configured in the DB Admin menu.  
+If that window is blank, icon will be hidden.
+
+* [Back] Link
+Leads to the back page which is configured in the DB Admin menu.  If
+that window is blank, icon will be hidden.
+
+Tip) Don't input same URL to the back icon and home icon.  This may 
+     make users confused.  Back link is designed to be used only if 
+     the home page URL is different from that of the URL of the page 
+     where the bulletin is linked.
+
+* [Forward], [Backward] Link
+
+Link to previous(-1) page and next(+1) page.
+
+* [Write] Link
+Leads to writing a new article screen.
+
+* [Reload] Link
+Displays the very first page of articles.  This function is same as 
+a user connect to bulletin.  This is useful when a user want to read 
+all the articles, during read searched articles using search window.
+
+* Using search window
+Parallel searching by name(&file name), title, text is possible.  If
+you click the 'Search' button after type a word which you want to re-
+ad, all the articles which contain that word.  For example, if you w-
+and to search articles whose text or title contain the word 'nobreak'
+,CWB lists articles which contain the word 'nobreak' and the text co-
+lor of 'nobreak' is red.(No case sensitive, nobreak is same as NOBRE-
+AK) Searching by name searches writer name and file name together.  
+Therefore, search engine will list the article which S. Y. Kim wrote 
+and the article which contain attached file, 'kim.jpg'.
+
+Hint) If you want to search by only file name, then select name and -
+      then input "." (dot, general file name is FILENAME.EXT, so a d-
+      ot is exists) in the search window.  If you want to search a f-
+      ile whose extension is GIF, input ".gif" in the search window.
+
+Caution) CWB doesn't support extended search.  When a user input 'bu-
+      lletin management' CWB search only look for a string 'bulletin 
+      management', while other search engine look for 'bulletin' and 
+      'management' or 'bulletin' or 'management'.
+
+==[Writing an article window]========================================
+             CrazyWWWBoard 98 Professional Edition ¥±
+---------------------------------------------------------------------
+
+ +---------------+--------------------------------------------------+
+ |      Name     | [Gi-il, Kim________]                             |
+ +---------------+--------------------------------------------------+
+ |     E-Mail    | [kiexpert@nobreak.com________________]           |
+ +---------------+--------------------------------------------------+
+ |    Subject    | [Nobreak Technologies, Inc._________]  [******__]|
+ +---------------+--------------------------------------------------+
+ | +-------------------------------------------------------------++ |
+ | | Dear sir.                                                   || |
+ | | .....                                                       || |
+ | | Thank you.                                                  || |
+ | +-------------------------------------------------------------++ |
+ +---------------+--------------------------------------------------+
+ |  Attach Text  | [C:\DOC\News.txt_________] [BROWSE...]           |
+ +---------------+--------------------------------------------------+
+ | Upload Binary | [F:\IMAGE\smile.gif______] [BROWSE...]           |
+ +---------------+--------------------------------------------------+
+ --------------------------------------------------------------------
+
+                        [      S u b m i t      ]              [List]
+
+                      (c) Nobreak Technologies, Inc.
+=====================================================================
+
+Password will be asked when a writer modify or delete that article l-
+ater.  If password window is blank, that article can be deleted by o-
+nly the administrator.
+
+Attach Text function is to attach a general text file(can be shown by
+Notepad.exe).A attached text will be attached below written text.  
+The main purpose of this function is avoid 'Copy' and 'Paste' using 
+clipboard.
+
+Upload Binary function is to attach any kinds of files such as image,
+music, document files.  These files are downloadable and shown as 'D-
+ownload : XXXX'.
+
+CWB add mime type to this.  If a attached file is a image file(gif, 
+jpg), CWB will show that file,  or a sound clip(wav, mid) or motion 
+image file(mov, avi), CWB will play it, or a text file, CWB will show
+first some lines of it.
+
+A user can declare a new mime type in the Global configuration of Cr-
+azyAdmin.cgi,though most types are declared already.
+
+Tip) You will find that the name input window and Email input window 
+     are already filled with your name and Email address or other's 
+     name and Email address.  This is due to the 'Cookie function' to
+     avoid input same info repeatedly. Once a user write a article, 
+     the name and Email address are saved in the    user's browser a-
+     nd next time, CWB call that name and Email address.
+     This is very useful, however if CWB is installed in the shared 
+     computer such as school lab's, this function make confusion.  In
+     this case, set 'CookieEnable' to 'False' not to use cookie.
+
+Following is a example.
+
+==[Example]==========================================================
+
+                
+                 CrazyWWWBoard 98 Professional Edition II
+ --------------------------------------------------------------------
+ Written by Gi-il, Kim (kiexpert@nobreak.com)       Hits:22 , Lines:4
+ +------------------------------------------------------------------+
+ |                   Nobreak Technologies, Inc.                     |
+ +------------------------------------------------------------------+
+ | Download : smile.gif (3 Kbytes)                                  |
+ | -----------------------------------                              |
+ | +----------------------+                                         |
+ | | oOOOo     IMAGE SHOW |   <- Uploaded image                     |
+ | | O_O_O      S/m/i/l/e |                                         |
+ | +----------------------+                                         |
+ +------------------------------------------------------------------+
+ | Dear sir.                                                        |
+ | ....                                                             |
+ | Thank you                                                        |
+ | *Attached text 'News.txt' will be appeared here.                 |
+ +------------------------------------------------------------------+
+ Prev: Is it good?  March 27, 1998 (14:36) from kiexpert.nobreak.com
+ Next: Re: Feel free
+ -------------------------------------------------------------------
+ [Modify] [Delete] [Write] [Reply]        [Backward] [Forward] [List]
+
+                      (c) Nobreak Technologies, Inc.
+=====================================================================
+
+
+* [Modify] [Delete] Link
+
+Is used when you modify or delete an article.  If you didn't input p-
+assword, when you write that article, only the DB administrator's pa-
+ssword is valid.
+
+Caution) If you try to modify an article, you can modify text and add 
+        a new attached text, but you cannot replace a uploaded file 
+        with a new one.In order to replace a uploaded file with a new 
+        one, you should delete that article and write a new one.  If 
+        you have an authority to access CWB on the shell, you can ov-
+        erwrite the attached file with a new one. In this case, CWB 
+        will work without any problem, but the file size will be cha-
+        nged.  This method can be used to upload a big file. First, 
+        upload a small file to CWB and then replace it with a big one.
+        However, this method is a temporary expediency and is not re-
+        commended.
+
+* [Write] [Reply] Link
+Is used to write or reply to an article.  There are two reply mode s-
+uch as date mode and thread mode, this mode is set in the DB admin w-
+indow.  In the date mode, articles will be sorted by the date, while 
+replies are shown below the original article, in the thread mode.
+
+* [Backward] [Forward] Link
+Leads to the previous / next article.
+
+Tip) If you point [Backward] [Forward] icon, the title of previous / 
+     next article will be displayed in the browser's status bar.
+
+* [List] Link
+Leads to the list screen.  This doesn't reload CWB, but shows a list
+which is cached in the browser. (If not cached, reload CWB)  The rea-
+son why list link is more effective than back button of browser is as
+followings.  If a user read No. 10 article and then No. 11, No. 12 u-
+sing a forward link, he or she should click back button several times
+to go back to list screen, but he or she can go back to list screen 
+by clicking a list link only once.
+
+Tip) If an article is read, the counter will be increased by one.  
+     However, the counter will not be increased if you click a list 
+     button, because List button shows a cached list.  I don't think 
+     it is a good idea that Reloading CWB in order to increase a cou-
+     nter hits.
+
+==[DB Admin Menu]===================================================
+
+               CrazyWWWBoard 98 Professional Edition ¥±
+        ------------------------------------------------------------
+        +----------------------------------------------------------+
+        |                  Web Board Information                   |
+        +----------------------------------------------------------+
+        | ...                                                      |
+        +----------------------------------------------------------+
+
+        +----------------------------------------------------------+
+        |            Administrator Contact Information             |
+        +----------------------------------------------------------+
+        | ...                                                      |
+        +----------------------------------------------------------+
+
+        +----------------------------------------------------------+
+        |                      User Interface                      |
+        +----------------------------------------------------------+
+        | ...                                                      |
+        +----------------------------------------------------------+
+        ------------------------------------------------------------
+        [Reset]                 [ S a v e ]                   [List]
+
+        +----------------------------------------------------------+
+        |                 Database Administration                  |
+        +----------------------------------------------------------+
+        | ...                                                      |
+        +----------------------------------------------------------+
+
+====================================================================
+
+It is designed that Applied functions to be configured in CrazyWWWBo-
+ard.conf(Global Configuration) and individually appled functions dep-
+ending on DBs to be configured in each DB's Admin Menu.
+
+Password, Administrator's Name, and Administrator's Email address sh-
+ould be configured and you can use default values of other than above
+three.
+
++ Web Board Information ('*'marked item should be input)
+
+  * New Password, Re-enter Password
+    Setup DB Administrator's password. (Max. 8 digit)
+    If password is setup already, new password will be setup.
+    This password will be used for authentification.
+
+  - Browser Title
+    Message which will be used the title of Client(User)'s browser.
+    (Tip) This configuration is invalid if HTML Header and Tailer is 
+          set to 'own html'.
+
+  - Title Message
+    Bulletin message on the upper part of a bulletin board.
+
+  - HomePage URL, Target
+    The Homepage address linked by 'Home' icon on the lower left par-
+    t of a bulletin board.  If you leave it blank, icon will be hidd-
+    en.  Target is the frame name where the homepage is displayed wh-
+    en 'Home' icon is clicked.  Following is the usage example.
+
+  - Back URL, Target
+    Same concept as the HomePage URL.  Only difference is that the i-
+    con is 'Back' icon.  This is useful when the Homepage address is 
+    different from the webpage where the CWB is linked.  Using same 
+    address for the HomePage URL and Back URL makes user confused.  
+    If you leave it blank, icon will be hidden.
+    
++ Administrator Contact Information
+  * Administrator Name
+    Type DB Administrator's name.
+    
+  * Administrator E-mail
+    Input the administrator's Email address.
+
+  - Mail to Administrator
+    Decides whether sending an Email to administrator when an article
+    is posted.
+
+  - Mail to Poster
+    Decides whether sending an Email to the original poster when a r-
+    eply is posted.  In other word, when somebody replay to an artic-
+    le written by A, decides whether sending an Email to A or not.
+
+  * User Interface / Common
+  - Language
+    Decides the language which is used for CWB.  Korean, English and 
+    Japanese are supported.
+    (Tip) This doesn't mean the language that is written by posters. 
+     Even if the Language is set to English, a user can write an art-
+     icle in Korean. This means that the titles such as 'Subject' 'H-
+     its' can be displayed with different language.
+
+  - Font Size
+    Decides the font size of article.
+    (Tip) In English and Korean, General(font size 2) is mostly used, 
+    and in Japanese Big(font size 3) is mostly used.
+
+  - Underlined Link
+    Decides whether underline links.
+    Caution) Some browsers may not support this function.
+
+  - Table Width
+    Decides the width of table.  You can select among the fixed meas-
+    urement by pixel or relative measurement by %.
+    (Tip) Table Width : [700______]
+    Table Width : [80%_____]
+
+  - Character Set
+    Decides the character set which is used for displaying the posted 
+    article.  You may leave blank, but I recommend you to appoint one
+    among English 'so-8859-1', Korean 'euc-kr', or Japanese 'x-sjis'.
+    This appointing display following extra tag.
+    <meta .... content="text/html; charset=CharSet">
+    (Caution) This appointing may causes redraw depending on browsers.
+    (Caution) This is not valid, if HTML Header and Tailer is set to 
+              'own html'.
+
+  - HTML Header, Tailer
+
+    Decides using whether the system default header and tailer or th-
+    e following HTML header and tailer for CWB.
+
+    (Caution) If this is set to 'own html', 'Browser Title', 'Title 
+              Message' and 'Character Set' configuration will be ign-
+              ored.  Therefore, you should tag above fact to HTML He-
+              ader and Tailer by your self.
+
+  - HTML Header, HTML Tailer
+    When HTML Header and Tailer is set to 'own html', the tag which 
+    is typed here will be used. Following is a example.
+
+    (Ex) HTML Header
+    +--------------------------------------------------------------++
+    | <html>                                                       ||
+    | <head>                                                       ||
+    |   <title>Browser Title</title>                               ||
+    |   <meta http-equiv="Content-Type" content="text/html;        ||
+    |   charset=iso-8859-1">                                       ||
+    |   </head>                                                    ||
+    |                                                              ||
+    | <body bgcolor="white">                                       ||
+    | <center>                                                     ||
+    | <font size="5">Title Message</font><br>                      ||
+    +--------------------------------------------------------------++
+
+    (Ex) HTML Tailer
+    +--------------------------------------------------------------++
+    | </center>                                                    ||
+    | </body>                                                      ||
+    | </html>                                                      ||
+    +--------------------------------------------------------------++
+
+
+* User Interface / List Module
+
+  - List Order
+    Decides the list order or articles.
+    By date   : Display from the newest article.  (Commonly used)
+    By thread : Same as 'By date' except the reply is displayed next
+                to the original article.
+
+  - Articles / Page
+    Decides how many articles are shown in one page.
+
+  - Field Number
+    Decides whether show a physical ID or a logical ID.  A Logical ID
+    means the numbered ID increased from 1.
+    (Caution) If article Number is set to disable, this function is 
+              not valid.
+
+  - Field Type Icon
+    Decides whether display file type icon so as to show upload file.
+    For example, jpg type icon will be shown in front of upload file 
+    in list mode if you enabled this.
+
+  - Field Filename 
+    Decides whether show file name in board list in case there is up-
+    load file. 
+
+  - Field Name
+    Decides whether put the name before or after the title on the ar-
+    ticle list screen.
+
+  - Field Subject 
+    Decides whether CWB cut off the rest of title or return to the n-
+    ew line, when the title is too long to display in one line.
+
+  - Field Date 
+    Decides whether show the date or not on the article list.
+    
+  - Field Hits 
+    Decides whether show the count of Hits or not on the article list.
+
+  - Field Download 
+    Decides whether show the count of downloading upload file or not 
+    on the article list.
+ 
+  - Folder Icon
+    Decides whether show directory buttons in front of the title.  T-
+    here are three kinds of buttons, one is 'Open type' which indica-
+    te that there is a thread, another is 'Close type' which indicat-
+    es that there is no thread, the other is 'New type' which indica-
+    tes that the article is posted recently.
+
+  - High Light Article
+    Is the function that display a New type icon in front of a recen-
+    tly uploaded file. The period is between 0 - 5 days. (Caution) T-
+    his function is invalid, if file type icon is set to disable.
+
+  - Hide Search
+    Decide whether hide a search window on the bottom of article list
+    screen.
+
+  - Icon Location 
+    Decides where icons of write, home, reload is placed bottom,top,
+    left or right side of board table.
+  
+
+  - Border Size
+    Is the width of table border and decided on the article list scr-
+    een.
+
+
+  - Title Font Color, Title Bg Color, Article Font Color, Article Bg
+    Color Decides the font color and background color.
+    (EX) Title Font Color : [#00FFAB__]
+         Title Font Color : [GREEN____]
+         Title Font Color : [#bc2244__]
+         Title Font Color : [blue_____]
+
+
+* User Interface / Read Module
+
+  - HTML Mode
+    Decides that CWB whether accepts or ignore that HTML tag in the 
+    article.  If set 
+    to 'Ignore HTML & Auto Link' HTML code is ignored and URL is link
+    ed automatically.  If URL, 'http://www.nobreak.com' is in the ar-
+    ticle, that URL will be linked and a email address such as hjkwo-
+    n@nobreak.com will be linked, too. 
+    (Caution) In 'Accept HTML' mode false using tags may cause errors
+              and nothing is displayed on the screen.  I recommend u-
+              sing 'Ignore HTML & Auto link'.
+
+  - Link Target
+    This is valid only if CWB is used in frame.  When a user click a 
+    link in an article, this option decides that show the contents w-
+    hether in full screen or in the frame.
+    (Caution) Only if HTML Mode is Auto Link, it isn't valid.
+
+
+  - IP Address
+    This function is useful, when you want to allow anonymous posting. 
+    If you set 'enable' CWB won't show nor record the user's host IP 
+    address.  When it is enable, old articles won't be shown, either. 
+    Therefore, you cannot trace the IP address later.
+
+  - Icon Location 
+    Decides where icons such as delete, reply, forward, backward is 
+    placed. location can be selected bottom,top,left or right side of
+    board table. And more automatically locate these icons left and 
+    right sides in case the number of article is over 20 lines.
+
+  - Line Height 
+    Adjust line height and 10 point is defaut value of web browser. 
+    For information, the bigger it is, the wider line height is.
+
+  - Title Border Size
+    Decides the width of title border on the read screen.
+
+  - Text Border Size
+    Decides the width of text border.
+
+  - Title Font Color, Title Bg Color, Text Font Color, Text Bg Color
+    Decides the font color and background color.
+
++ User Interface / Write Module
+
+  - File Upload
+    Decide whether CWB allow uploading files.  When this function is
+    set to enable, uploading window is added to the write screen.
+
+  - Subject Text 
+    Insert the field name when a user modify their own filed name. 
+    ex) product name, disease name
+
+  - Default Subject
+    Is the predefined sentence which is displayed in the title window.
+    (Ex) Default Subject : [Input the title here]
+
+  - Default Text
+    Is the predefined sentences which is displayed in the text window.
+    (Ex) Default Text
+    +-----------------------------------------------------------++
+    | 1. Product Code :                                         ||
+    | 2. Address      :                                         ||
+    | 3. Zip Code     :                                         ||
+    +-----------------------------------------------------------++
+
+  - Category 
+    Decides whether category function keeps on or off. Users seems to
+    use a physical board but actually various board is worked logica-
+    lly in it.
+    For example Q&A board using category, user can select one from 
+    question, reply or information etc.. and also can see filtered the 
+    article on the article list. Following is another catetegory exa-
+    mple for computer parts, CPU, SOUND CARD. When firstly loading, 
+    there will be all kinds of posted article. And then filtered list
+    can be displayed per CPU or per SOUND CARD.
+         
+  - Category Definition
+    Define category item. Here is guide sample.
+
+    +-----------------------------------------------------------++
+    |_TITLE = [Platform]                                        ||
+    |_NOTSELECTED = Etc                                         ||
+    |# This is comment                                          ||
+    |10 = Solaris                                               ||
+    |20 = HP-UX                                                 ||
+    |30 = Linux                                                 ||
+    +-----------------------------------------------------------++
+    
+    '#' is a comment so will not execute any process.
+    _TITLE = category title
+    _NOTSELECTED = non categorized item
+    simbol = item   ex) 10 = question,  A = reply
+    (simbol should be unique value. If there is double mentioned sim-
+    bol, The former will be choosed and The later will be ignored.)
+    Tip) In case you want to list filtered article on window loading,
+         Following will make it possible.
+         CrazyWWWBoard.cgi?db=YOUR DB&category=simbol
+        
+    - Title Font Color, Title Bg Color, Text Font Color, Text Bg Col-
+      or 
+    Decides the font color and background color.
+
+
+* User Interface / Email Module
+  - Email Header, Tailer
+    Decides to use whether the system default header and tailer or f-
+    ollowing Email header and HTML railer. When CWB sends Emails to a
+    administrator and a user after an article is posted.
+    (Ex) If MailToAdmin and MailToPoster is set to disable, this fun-
+         ction is not valid.
+
+  - Email Header, Email Tailer
+    When 'Email Header, Tailer' is setted by 'own signature', this s-
+    tring will be used instead of 'system default'.
+
+    (Ex) Email Header
+    +--------------------------------------------------------------++
+    | + New article is posted                                      ||
+    |                                                              ||
+    +--------------------------------------------------------------++
+
+    (Ex:) Email Tailer
+    +--------------------------------------------------------------++
+    | + Powered by Nobreak Technologies, Inc.                      ||
+    |                                                              ||
+    +--------------------------------------------------------------++
+
+
+* User Interface / Permissions 
+
+  - Listing 
+    Decides allow whether everybody or the only administrator to be 
+    able to see the article list. 
+
+  - Posting
+    Decides allow whether everybody or the only administrator to be
+    able to write an article. 
+
+  - Reading
+    Decides allow whether everybody or the only administrator to be 
+    able to read an article. 
+
+  - Statistics
+    Decides allow whether everybody or the only administrator to be 
+    able to see statistics data. When only administrator is selected,
+    authentication module request password.
+
+
+* Database Administration 
+ 
+  - Batch - delete
+    Decides allow whether bactch-delete faculty is enable or disable. 
+    Phisical article number(not virtual article number) must be given
+    to batch-delete. You can see physical number of article on the b-
+    rowser's status bar when you put the mouse on the article.
+
+  - DB Reorganization
+    When you delete and insert the article frequently, CWB saved 
+    This function reorganize DB and recreate hash index so as to imp-
+    rove access speed to DB. It effects like fragmentation on windows
+    os system.
+        
+    
+V-4. CrazyArchive Usage
+
+CrazyArchive automatically save the message received through E-mail.
+We call such as mail delivery program MDA(Mail Delivered Agent). It 
+differes from MDA in that CrazyArchive saves received message not in
+mailbox but on board. Here is what you can do with CrazyArchive.
+
+- Listing message transferring by mailing list on web board 
+- Supporting message list on board for unsubscriber
+- Holding in common E-mail message received through webmaster@company
+  .com
+- Checking your E-mail message without considering the place.
+
+The development purpose is basically to follow up fast feedback by s-
+upporting past seminar/discussion data to new subscriber with Archive.
+
+(Tip) CrazyArchive 1.0 is designed to save received E-mail message on
+      web board but not to decode mail message. Developer intended to 
+      work CrazyArchive 1.0 as pure MDA and to handle MUA(Mail User 
+      Agent) area by help of other related utilities, for example we 
+      use iso-2022kr and hcode to Decode and encode Korean. But it c-
+      annot adapt it all kinds of E-mail and none the more, would not
+      execute decoding process as per the Base64, Quoata Printable, 
+      Mime. Hoping Developer will introduce improved CrazyArchive ac-
+      cepting CrazyArchive working as not only MDA but also MUA befo-
+      re long. 
+
+
+1. Local Language Decoder Installation
+
+As mentioned above, CrazyArchive needs to install related Decoder si-
+nce it isn't able to decode local language by itself. It is wise to 
+consult with system administrator because there is big possiblity to
+be installed in local system. In case of Korean it needs to install
+hcode. Exceptionally, it is no use installing hcode if sendmail in K-
+orean is already installed in its own system. local language Decoder 
+can be easily given in our site, ftp://ftp.nobreak.com/pub/tools/ 
+which keep offering updated one. Not only Superuser but also account
+user can install Decoder at temporary directory of his/her home.
+
+
+2. Usage 
+
+"| /ABSOLUTE PATH/mail Decoder | /ABSOLUTE PATH/CrazyArchive DB_NAME"
+
+ex) " /usr/local/bin/hcode -dk | /home/shpark/cgi-bin/CrazyArchive 
+    DB_NAME"
+    " /home/shpark/bin/hcode -dk | /home/shpark/cgi-bin/CrazyArchive 
+    DB_NAME"
+
+caution) It is possibly to bring about error if double quotation mar-
+         k is missed
+         Please note '|' is not upper case 'l' but pipe simbol.
+
+CrazyArchive can be made use of in many ways just inserting above 
+line as mailing list or E-mail address. Also can be useful whereever
+E-mail is availble since mail system transfer the message with the s-
+ame mechanism when it e-mailed it.
+
+
+1) Mailing List Archive 
+
+Archive for mailing list, member can be built using system files, /e-
+tc/aliases or /etc/mail/aliases as below.
+
+---[FILE /etc/aliases]-----------------------------------------------
+webmaster: whitept
+member:	:include:/var/maillist/member.ml 
+        (sent to e-mail addresses in member.ml file)
+info:	"| /usr/local/bin/hcode -dk | /home/shpark/cgi-bin/CrazyArch-
+         ive infoArchive"
+all:    info, "| /usr/local/bin/hcode -dk | /home/shpark/cgi-bin/Cra-
+         zyArchive allArchive"
+---------------------------------------------------------------------
+
+
+---[FILE /var/maillist/member.ml]------------------------------------
+"| /usr/local/bin/hcode -dk | /home/shpark/cgi-bin/CrazyArchive memb-
+erArchive"
+webmaster@nobreak.com
+hostmaster@nic.or.kr
+---------------------------------------------------------------------
+
+
+For your information,
+- All message sent to recipient,webmaster will be transferred to whi-
+  tept 
+- Message sent to member is extended and transferred to all e-mail a-
+  ddress in member.ml (recorded memberArchive)
+- Message sent to info will be saved in infoArchive DB.
+- Message sent to all will be transferred to and saved in allArchive
+  DB.
+
+(Tip) If your Archive address(member@xxx.com) is mentioned as Admini-
+      strator E-mail, posted article on board will be sent to member
+      mailing list. Don't worry about redirection, memberArchive -> 
+      member -> memberArchive since Archive ignore loop-back message.
+
+
+2) Using .forward file
+
+Account User not having superuser permission can build Archive using 
+.forward file. .forward file is the same with mailing list even if it
+is designed to collect each message sent various message id.
+
+Here is the example that account user, kiexpert builds mailing list 
+and Archive by .forward file.
+
+---[FILE /home/kiexpert/.forward]------------------------------------
+"| /usr/local/bin/hcode -dk | /home/kiexpert/cgi-bin/CrazyArchive my-
+list"
+kiexpert@nobreak.com
+cho202@nobreak.com
+nobrik@nobreak.com
+jailman@nobreak.com
+---------------------------------------------------------------------
+
+Kiexpert has adapted it unused e-mail, kiexpert@nobreak.ne.kr. So all
+message sent to kiexpert@nobreak.ne.kr will be transferred to recipi-
+ent mentioned in .forward file  and saved Archive mylist DB.
+
+
+3) Using procmail
+
+
+You can expect more skillful usage if local mailer is procmail. It is
+much effective when one mail id gets all message from many mail id.
+For example, if mail id, jailman received message from webmaster,info
+, test mail id, CrazyArchive can be built effectively by using .proc-
+mail without directly handling /etc/aliases file.
+
+
+---[FILE /etc/aliases]-----------------------------------------------
+webmaster:		jailman
+info:			jailman
+test:			jailman
+---------------------------------------------------------------------
+
+Create .procmailrc file in home directory.
+
+
+
+---[FILE /etc/jailman/.procmailrc]-----------------------------------
+:0:
+* ^TOwebmaster
+| /usr/local/bin/hcode -dk | /home/jailman/cgi-bin/CrazyArchive 
+webmaster
+
+:0:
+* ^TOwebmaster
+| /usr/local/bin/hcode -dk | /home/jailman/cgi-bin/CrazyArchive info
+---------------------------------------------------------------------
+
+It means that all message for webmaster is saved to webmaster DB 
+and message for info to info DB.
+
+(caution) Note there is no double quotation mark "" in above .procma-
+          lrc.
+
+(Tip) Even if local mailer is trending from mail toward procmail,
+      most commercial product will not use procmail. Please ask serv-
+      er administrator or check whether procmail is defined in 'Mloc-
+      al' definition of sendmail.cf(placed in /etc/ or /etc/mail) or 
+      not so as to know what local mailer is.
+
+
+
++------------------------------------------------------------------+
+| VI. Frequently Asked Questions                                   |
++------------------------------------------------------------------+
+
+Q-1. I can see only broken characters when I run CrazyAdmin.cgi or                   
+      CrazyWWWBraod.cgi.
+A.   When HTTP Daemon(Web Server) denies the CGI execution, that pro-
+     blem occurs. In that case, ask a server administrator to setup 
+     followings.
+
+     Set any file whose extension is 'cgi' to be run on any directory.
+     [Apache HTTPd]   conf/srm.conf
+     AddType application/x-httpd-cgi .cgi
+     AddHandler cgi-script .cgi
+
+     Permit CGI to be run on the specific directory.
+     [ApacheNCSA HTTPd]   conf/access.conf
+     <Directory /home/*>     ## permit /home/ACCOUNT user to run CGI.
+       Options ExecCGI Indexes FollowSymLinks
+               ~~~~~~~
+     </Directory>
+
+Q-2. When I run CrazyAdmin.cgi, I found following error message.
+     Access logging(/ABSOLUTE_SYSTEM_PATH/cwb-data/logs/adm_access_l-
+     og) fail.
+
+A. Modify following parts of CrazyWWWBoard.conf.
+     - RealBasePath
+     - HtmlBasePath
+
+Q-3. When I run CrazyAdmin.cgi, I found following error message.
+     Error !!!
+     DataBase Access Error : File open error
+
+A.   Check if that Database is registered.
+
+Q-4. I can see only broken icons.
+
+A.   When 'HtmlBasePath' of CrazyWWWBoard.conf is configured incorre-
+     ctly or cwb-data is not installed on the HTML document directory 
+     that problem occurs.
+
+Q-5. When I tried to download a uploaded file, I can see only the br-
+     oken characters.
+
+A.   Register a mime type to the web server.  For example, if broken 
+     characters are displayed when you download a file whose extensi-
+     on is hwp, register a mime type to the mime type configuration 
+     file on the web server as following.
+     - application/x-hwp   hwp
+
+Q-6  I lost DB Admin password.
+
+A.   Call that DB admin menu of CrazyAdmin.cgi using [Conf] button, 
+     then change passwords and save.
+
+Q-7  I lost the master password of 'CrazyAdmin.cgi'.
+
+A.   Overwrite CrzayAdmin.conf with conf/CrazyAdmin.conf-dist, then 
+     you can access using password '0000'.
+
+Q-8. I am a old version(3.x , 2.x) user.  Can I use my DB with CWB.
+     
+A.   Move all the files in the wwwboard/data/ directory to cwb-data/
+     data directory, then change owner and group into those of Crazy-
+     Admin.cgi.  Follow following steps.
+     $ mv wwwboard-3.x/data/* cwb-data/data/
+     $ cd cwb-data/data
+     $ chown -R OWNER *
+     $ chgrp -R GROUP *
+     (Caution) You may need superuser(root) authority.
+
+Q-9. Existed DB is compatible between heterogeneous systems?
+
+A.   A DB should be converted to be used in the heterogeneous system. 
+     Firstly, install tranDB package on both systems where 'http://
+     cwb98.nobreak.com' then convert DB and port.
+
+Q-10. I want to email new article to multiple users.
+
+A.   Create a mailing list and input that list in the 'Mail To Admi-
+     nistrator' window of DB Admin menu. For example, Supposing that
+     you want to email a new article to nobreak@nobreak.com and einh-
+     eit@nobreak.com, and the mailing list address is all@nobreak.com
+     , you can configure as following. (Two commonly used methods wi-
+     ll be introduced.)
+
+     Firstly, use alias function of sendmail. (You need superuser au-
+     thority)
+     $ vi /etc/mail/aliases (ATT Compatible, ex:Solaris)
+     $ vi /etc/aliases      (BSD Compatible, ex:Linux)
+     all:       nobreak@nobreak.com einheit@nobreak.com
+     :wq!
+     $ newaliases (Apply changed aliases file)
+
+     In the case of saving mailing list in an external file.
+     $ vi /etc/mail/aliases
+     all       :include:/maillist/all.list
+     :wq!
+     $ vi /maillist/all.list
+     nobreak@nobreak.com
+     einheit@nobreak.com
+    2  :wq!
+     $ newaliases
+
+     Second method is useful for the general users who don't have a 
+     superuser authority.  In this case, you need one extra email ad-
+     dress.  Supposing that the email address is all@nobreak.com, cr-
+     eate a forward file then, type the email address.
+     $ telnet nobreak.com
+     login:all
+     password:xxxxxx
+     $ cd (change directory into your home directory)
+     $ vi .forward
+     nobreak@nobreak.com
+     einheit@nobreak.com
+     :wq!
+
++-----------------------------------------------------+
++------------------ E     N     D --------------------+
++-----------------------------------------------------+

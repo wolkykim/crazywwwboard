@@ -1,0 +1,723 @@
+LicenseKey = @LicenseKey@
+######################################################################
+##                                                                  ##
+##         CrazyWWWBoard.conf Realtime Configuration File           ##
+##                                                                  ##
+##      Official distribution site : http://cwb98.nobreak.com       ##
+##               Technical contact : support@nobreak.com            ##
+##                                                                  ##
+##                                   (c) Nobreak Technologies, Inc. ##
+######################################################################
+##
+## 본 파일(CrazyWWWBoard.conf)은 CrazyWWWBoard.cgi와 CrazyAdmin.cgi에
+## 의해 해석되어 실행에 즉각적으로 반영된다.
+##
+## CrazyWWWBoard(이하 CWB)는 오랜기간동안 사용자들의 요구에 맞추어 수
+## 정 되어 왔고, 우리는 그런 다양한 요구에 따라 사용자들이 소스 코드를
+## 수정하지 않고도 손쉽게 원하는 구현을 적용할수 있도록 realtime conf-
+## iguration을 도입하였다.
+##
+## 본 파일에는 다수의 설정이 존재하는데, 우리는 대다수의 사용자에게 맞
+## 도록 본 파일을 설정하여 놓았다. 만약 귀하가 CWB를 처음 설치하였다면
+## 모든 설정을 default 상태로 유지한체 RealBasePath와 HtmlBasePath el-
+## ement만을 귀하의 상태에 맞게 수정하기 바란다. CWB의 모든 기능이 정
+## 상적으로 동작함이 확인되면, 그때 귀하의 취향에 맞게 다른 element들을
+## 변경하면 된다.
+##
+## CWB는 본 파일은 다음과 같은 규칙으로 해석 한다.
+##
+## 1. Element 기술은 다음과 같이 한다.
+##    ex) Element Name = Value String
+##
+## 2. 한 라인에서 첫번째 나오는 문자가 '#'이면 해석되지 않는다(주석).
+##    ex) # comments
+##
+## 3. Element Name 과 Value String은 Case Sensitive(대소문자 구별)하게
+##    해석 된다.
+##
+## 4. Element 기술에 있어, Element Name 전의 공백, '=' 양쪽의 공백,
+##    Value String 후의 공백은 무시된다.
+##    ex) 다음은 같은 설정이다.
+##        Element Name=Value String
+##        Element Name = Value String
+##        Element Name     =      Value String
+##
+## 5. 동일한 element name은 먼저 선언된것이 유효하다.
+##
+## 본 파일에서 '##'로 시작하는 라인은 설명이고, '#'로 시작하는 라인은
+## element의 사용 예를 나타낸다.
+##
+##    CookieEnable     = true       <- 해석되는 Element
+##    #CookieEnable     = false     <- 주석 처리된 Element 사용예
+##
+## 따라서 사용자는 수정하고자 하는 element 앞에 '#'을 추가/삭제 함으로
+## 써 대부분의 설정을 변경할수 있을 것이다.
+##
+######################################################################
+
+
+######################################################################
+## [ProgramName]
+##
+## CrazyWWWBoard.cgi와 CrazyAdmin.cgi의 파일명 변경은 소프트웨어가 자
+## 동으로 파악한다. 본 element는 CrazyAdmin.cgi에서 CrazyWWWBoard.cgi
+## 의 정확한 파일명을 얻기위해 존재한다.
+## 따라서, CrazyWWWboard.cgi의 파일명을 변경하였다면, 그에 맞게 수정하
+## 여야 한다.
+##
+## 파일명의 변경 사용자에 대해, 우리는 아쉬움과 쓸쓸함을 느낀다! crazy
+## 는 mania를 뜻하는 다른 단어로써 지워진 이름이고, 우리는 정열과 심혈
+## 을 다해 낳은 자식에게 CrazyWWWBoard, CrazyAdmin이란 이름을 주었다.
+## 이런 점을 존중해서 사용자들이 원래 이름지어진 그대로 사용하여 준다
+## 면, 그에 대해 우리는 기쁨으로 감사할 것이다.
+##
+######################################################################
+ProgramName = CrazyWWWBoard.cgi
+
+
+######################################################################
+## [AdminName, AdminEmail]
+##
+## 관리자 성명과 Email 주소를 기입한다.
+## DB 생성후 설정화면에 기본으로 나타나게 된다.
+######################################################################
+AdminName = @AdminName@
+AdminEmail = @AdminEmail@
+
+
+######################################################################
+## [RealBasePath, HtmlBasePath]
+##
+## CWB는 CGI와 DataBase(DB)를 분리하여 설치할수 있도록 수정되었다.
+## CWB 3.x 버젼까지는 설치의 간편성을 위해 CGI가 존재하는 디렉토리 밑
+## 에 Data 디렉토리가 있도록 설계 되었지만, 이는 웹서버의 설정에 따라
+## icon 깨어짐 등의 문제가 발생하고, CWB를 새로운 상위 Version으로 Up
+## grade 할때 기존의 자료를 다시 옮겨 주어야 하는 불편함이 있었다.
+##
+## 따라서 CWB 98에서는 다음과 같이 CGI는 별도의 cgi-bin 디렉토리에, 관
+## 련 Data는 일반 HTML 파일이 올려지는 'document root' 디렉토리 하위에
+## 설치되도록 개선했다. 물론 3.x 버젼과 같이 CGI가 존재하는 디렉토리
+## 밑에 설치할수도 있지만, 앞에서 지적된 바와 같은 이유로 CGI와 Data를
+## 분리하여 설치하기를 권한다.
+##
+## /.../cgi-bin/ -+- CrazyAdmin.cgi
+##                +- CrazyAdmin.conf
+##                +- CrazyWWWBoard.cgi
+##                +- CrazyWWWBoard.conf
+##
+## /.../htdocs/.../cwb-data/ -+- data/
+##      ------                +- icon/
+##        |                   +- icon-type/
+##        V                   +- logs/
+##  or /public_html/          +- message/
+##
+## 설치방법의 변형으로 인해 CGI는 data가 존재하는 디렉토리를 파악할 방
+## 법이 요구된다. 본 2개의 element는 cwb-data의 시스템 절대 경로와 web
+## 상에서의 HTML 절대 경로를 제공한다.
+##
+## 우리는 초기 배포시 data 디렉토리를 'cwb-data'라 명명하여 제공한다.
+## 여기서 설정되는 경로는 앞으로 설명할 data, icon, icon-type, logs,
+## messages등의 기준 디렉토리가 된다.
+##
+## RealBasePath는 cwb-data 디렉토리의 시스템 절대결로를 뜻한다.
+## Unix shell상에서 cwb-data 디렉토리로 이동한후 pwd 명령을 주었을때
+## 표시되는 디렉토리를 기술한다.
+##
+## ex) $ cd cwb-data
+##     $ pwd
+##     /home/nobreak/public_html/cwb-data
+##
+##     RealBasePath = /home/nobreak/public_html/cwb-data
+##
+## HtmlBasePath는 Http Document Root를 기준으로한 cwb-data 절대 경로이
+## 다. 즉 웹상에서 나타나는 cwb-data 디렉토리 URL에서 domain을 제거한
+## 형태로 기술한다.
+##
+## ex) Internet URL -> http://cwb98.nobreak.com/~nobreak/cwb-data
+##                                             ~~~~~~~~~~~~~~~~~~
+##     HtmlBasePath ->  /~nobreak/cwb-data
+##     
+######################################################################
+RealBasePath = @RealBasePath@
+HtmlBasePath = @HtmlBasePath@
+
+
+######################################################################
+## [DefaultCharSet]
+##
+## 다국어 환경에서의 글자 깨어짐을 방지하기 위해 각각의 DB에 대해 Cha-
+## rSet을 지정할수 있다. 따라서 CWB는 다음과 같은 내용을 출력한다.
+##
+## <meta .... content="text/html; charset=CharSet">
+##
+## 각 DB의 관리자 화면에서 CharSet을 지정하면 그것이 사용되지만, 만약
+## 공백으로 남아 있다면, DefaultCharSet이 적용될 것이다.
+##
+## 다수의 DB가 euc-kr로 설정되어야 하고, 몇개의 DB만이 x-sjis로 설정되
+## 어야 할때, 본 element는 매우 효과적일 것이다.
+##
+## 이것은 알파벳 이외의 표현에 대해 어떤 문자셋을 사용하여 표현할지 b-
+## rowser에게 명시하여 주는것으로 역할을 다하며, 하나의 DB에서 다국어
+## 를 동시에 보고자 함은, 전적으로 browser의 역할임을 명시해야 한다.
+##
+## 만약 DefaultCharSet과 DB의 CharSet이 공백으로 설정되면, 출력은 생략
+## 된다.
+##
+## 다른 사용이유는 font의 모양을 보기좋게 하기위해서이다. 예로, 한국어
+## 의 경우 euc-kr로 설정해 놓으면 굴침체가 적용된다.
+##
+## 어떤 Browser에서는 CharSet이 설정됨으로 인해 화면의 껌벅임이 발생할
+## 수도 있다. 
+## 
+## 주의할점은 각 DB의 관리자 화면에서 DB별 HTML Header, Tailer를 사용
+## 한다면, 본 기능이 작동 하지 않으므로, Header, Tailer에 직접 기입하
+## 여야 한다.
+##
+## 일반적인 경우라면 본 element를 지정하지 않고 사용해도 무방하다.
+##
+######################################################################
+DefaultCharSet =
+#DefaultCharSet = euc-kr
+#DefaultCharSet = iso-8859-1
+#DefaultCharSet = x-sjis
+
+
+######################################################################
+## [DefaultTitle]
+##
+## 생성된 각각의 DB(게시판)별로 Browser Title을 지정 할수 있다.
+## 그러나 DB에서 Browser Title에 아무것도 지정하지 않는다면 아래의 De-
+## faultTitle이 Browser Title로 사용된다.
+##
+######################################################################
+DefaultTitle = CrazyWWWBoard 98 Professional Edition II
+
+
+######################################################################
+## [AllowUpload, UploadSoftLimit, UploadHardLimit]
+##
+## CWB는 파일 업로딩을 지원한다. 여기서는 파일 업로딩에 따른 두가지 e-
+## lement를 설명한다.
+##
+## AllowUpload element는 모든 DB의 파일 업로딩을 강제로 불가능케 한다.
+## 이는 DB별로 관리자가 다를경우에 유용하며, AllowUpload가 false로 설정
+## 되면, 이미 Upload Enable로 설정된 DB도 파일 업로딩이 금지 된다.
+##
+## UploadSoftLimit, UploadHardLimit element에는 DB별 파일 업로딩의 총
+## 허용량을 Kbyte 단위로 기술한다.
+##
+## UploadSoftLimit는 감시 용량이다. 즉 현재 업로딩된 파일의 총 용량이
+## 설정값보다 크면, 업로딩만을 금지 시킨다. (게시물은 작성가능)
+## 또한, 일단 전송된 파일에 대해서는 등록을 보장한다.
+##
+## UploadHardLimit는 절대적인 제한이다. 업로딩된 자료의 합은 설정값을
+## 절대 넘지 못한다. 즉, 게시물 전송이 성공적으로 진행되었어도, 첨부된
+## 업로딩 파일의 용량과 기존에 업로딩된 파일의 용량 합이 설정값을 초과
+## 하면, 전송은 취소된다. 만약, 기존의 업로딩 용량 합이 설정값보다 크
+## 다면(UploadHardLimit를 뒤늦게 설정했을때), 게시물작성이 거부된다.
+##
+## 다시한번 두 element의 차이를 정리하면 다음과 같다.
+## UploadSoftLimit를 사용하였을때는 일단, 업로딩이 허용되었다면, 전송
+## 하는 파일에 의해 총 업로딩 용량 합이 설정값을 훨씬 초과하더라도,
+## 그 게시물은 성공적으로 등록이 되지만, UploadHardLimit는 해당 게시물
+## 등록을 취소한다.
+## UploadSoftLimit가 1024이더라도 3000KB가 넘는 단일 파일이 등록될수
+## 있음에 유의하여야 한다. 이것을 막기위해 UploadHardLimit가 주로 사용
+## 될 것이다.
+##
+## 따라서, UploadHardLimit는 UploadSoftLimit보다 크거나 같을때 의미가
+## 있다.
+##
+## ex) UploadSoftLimit = 1024
+##     UploadHardLimit = 2048
+##
+## 설정값이 0 이면 업로딩은 제한되지 않는다.
+##
+## sample) +-------------+---------------+
+##         |   MegaBytes |  UploadLimit  |
+##         +-------------+---------------+
+##         |       1 MB  |      1024     |
+##         |       2 MB  |      2048     |
+##         |       3 MB  |      3072     |
+##         |       5 MB  |      5120     |
+##         |      10 MB  |     10240     |
+##         |      20 MB  |     20480     |
+##         +-------------+---------------+
+##
+######################################################################
+AllowUpload = true
+#AllowUpload = false
+
+UploadSoftLimit = 0
+#UploadSoftLimit = 1024
+
+UploadHardLimit = 0
+#UploadHardLimit = 5120
+
+
+######################################################################
+## [DataDirectory, DataExtension]
+##
+## 여기에선 게시판 DB가 저장될 디렉토리와 DB 파일의 확장자를 기술한다.
+## DataDirectory는 RealBasePath를 기준으로한 상대경로 표기법으로 기술
+## 되어야 하며, 패키지 배포시 cwb-data/data 디렉토리가 이를 위해 할당
+## 되어 있으므로, 이를 변경하지 않는한 본 기본 설정 값을 그대로 사용하
+## 면 된다.
+##
+## 또한 CWB에는 DB engine으로 GDBM을 채택하였고, GDBM은 관례적으로
+## 확장자를 gdbm으로 사용하여 왔기에 우리도 이를 따르도록 하자.
+##
+## DB가 저장되는 위치는 다음과 같다.
+##   RealBasePath/DataDirectory/DB_NAME.DataExtension
+##
+######################################################################
+DataDirectory = data
+DataExtension = gdbm
+
+
+######################################################################
+## [StatDirectory, StatExtension]
+##
+## 여기에선 게시판 통계 DB가 저장될 디렉토리와 통계 DB 파일의 확장자를
+## 기술한다.
+## StatDirectory는 RealBasePath를 기준으로한 상대경로 표기법으로 기술
+## 되어야 하며, 패키지 배포시 cwb-data/stat 디렉토리가 이를 위해 할당
+## 되어 있다.
+##
+## StatDirectory에 아무것도 지정하지 않으면 통계기록은 Disable 된다.
+## 이때에는 게시판의 통계기능이 작동하지 않는다.
+##
+## 통계 DB가 저장되는 위치는 다음과 같다.
+##   RealBasePath/StatDirectory/DB_NAME.StatExtension
+######################################################################
+StatDirectory = stat
+#StatDirectory =
+StatExtension = stat-gdbm
+
+
+######################################################################
+## [LogDirectory]
+##
+## 로그는 각 DB별 접속통계및 보안을 위해 사용된다.
+## LogDirectory는 RealBasePath를 기준으로 상대경로 표기법을 사용해 기
+## 술되어야 하며, 패키지 배포시 cwb-data/logs 디렉토리가 이를 위해 할
+## 당되어 있으므로, 이를 변경하지 않는한 본 기본 설정 값을 그대로 사용
+## 하면 된다.
+##
+## 만약, 저장매체의 용량문제로 인해 로그를 원치 않는다면, 다음과 같이
+## 공백 문자열로 설정할수 있다. 그러나 이때, CWB의 통계기능은 더이상
+## 자료를 수집하지 못할 것이다.
+##   LogDirectory =
+##
+## 로그가 저장되는 위치는 다음과 같다.
+##   RealBasePath/LogDirectory/adm_access_log     <- CrazyAdmin.cgi
+##                             adm_error_log      <- CrazyAdmin.cgi
+##
+##                             error_log          <- CrazyWWWBoard.cgi
+##                             access_log.DB_NAME <- CrazyWWWBoard.cgi
+##                             error_log.DB_NAME  <- CrazyWWWBoard.cgi
+##
+######################################################################
+LogDirectory =
+#LogDirectory = log
+
+
+######################################################################
+## [AllowDBhtml, HtmlHead, HtmlTail]
+##
+## CWB는 기본적으로 다음과 같은 골격의 문자열을 browser로 출력한다.
+##
+##   --[CGI Output 1]----------- 
+##   <html>
+##   <head>
+##     <title>Browse Title</title>
+##     <meta http-equiv="Content-Type" content="text/html;
+##      charset=CharSet">
+##   </head>
+##   --[HtmlHead]------------- 
+##   <body ...>
+##   ...
+##   <center>
+##   --[CGI Output 2]-----------
+##   ...
+##   ...
+##   --[HtmlTail]-------------
+##   </center>
+##   ...
+##   </body>
+##   --[CGI Output 3]----------- 
+##   </html>
+##
+## 이중 HtmlHead와 HtmlTail 부분에 지정된 파일의 내용이 출력된다.
+## 이를 System Default HTML 이라 칭한다.
+##
+## 다수의 DB에 동일한 인터페이스를 지원할때 유용하다. 그러나, 몇몇 DB
+## 에 대해 다른 형태를 취하고 싶다면, DB의 관리자 메뉴에 있는 옵션을
+## 사용할수도 있다.
+##
+## DB별 Html이 사용될때는 다음과 같이 CGI Output 1, 3은 출력되지 않는
+## 다. 따라서 CGI Output 1, 3에 해당하는 코드를 사용자가 작성해야 한다
+##
+##   --[DB HTML Header]----------- 
+##   <html>
+##   <head>
+##     ...
+##   </head>
+##   <body>
+##   ...
+##   <center>
+##   --[CGI Output]-----------
+##   ...
+##   ...
+##   --[DB HTML Tail]-------------
+##   </center>
+##   ...
+##   </body>
+##   </html>
+##
+## AllowDBhtml은 DB의 HTML Header, Tailer 기능을 강제로 불가능하게 한
+## 다. 이것이 false로 설정되면, 기존에 DB HTML 기능을 사용하던 DB도
+## System Default HTML로 강제 변환된다.
+##
+## 실제 파일의 위치는 다음과 같으며, 특별한 수정을 가하지 않았다면,
+## 기본 설정값을 그대로 사용한다.
+##   RealBasePath/HtmlHead
+##   RealBasePath/HtmlTail
+##
+######################################################################
+AllowDBhtml = true
+#AllowDBhtml = false
+
+HtmlHead  = message/htmlhead.html
+HtmlTail  = message/htmltail.html
+
+
+######################################################################
+## [HiddenAdminLink, HiddenStatLink]
+##
+## 각 DB의 상단에 편의를 위해 관리자 접속 icon과 통계 icon이 링크되어
+## 있는데, 이를 화면에서 감추고자 할때 사용한다.
+##
+## icon을 감추었을때는, CrazyAdmin.cgi를 통해서 접속하거나 다음과 같이
+## 접속하여 사용할수 있다.
+##   CrazyWWWBoard.cgi?db=DB_NAME&mode=admin
+##   CrazyWWWBoard.cgi?db=DB_NAME&mode=stat
+##
+######################################################################
+HiddenAdminLink = false
+#HiddenAdminLink = true
+
+HiddenStatLink = false
+#HiddenStatLink = true
+
+
+######################################################################
+## [HiddenHelpLink, Help]
+##
+## HiddenHelpLink element는 도움말 icon을 화면에서 감추고자 할때 사용
+## 하며, Help element는 실제 링크되는 파일의 경로이다.
+##
+## Help는 HtmlBasePath를 기준으로한 상대경로로 기술되어야 하며 다음과 
+## 같이 해석 된다.
+##   HtmlBasePath/Help
+##
+######################################################################
+HiddenHelpLink  = false
+#HiddenHelpLink  = true
+
+Help = @Help@
+#Help = YOUR_OWN_HELP.html
+
+
+######################################################################
+## [AllowDBmail, MailHead, MailTail]
+##
+## MailHead와 MailTail은 게시물을 email로 전송할때, 머릿말과 꼬릿말에
+## 해당하는 내용이 기술된 파일의 위치를 RealBasePath를 기준으로 상대경
+## 로 표기 한다.
+##
+## DB별로 다른 메시지를 보낼수도 있는데, 이때는 각 DB의 관리메뉴에서
+## 메시지를 설정하면 된다.
+##
+## AllowDBmail은 각 DB별 email 메시지 사용 허락 여부를 결정 한다.
+##
+######################################################################
+AllowDBmail = true
+#AllowDBmail = false
+
+MailHead = message/mailhead.txt
+MailTail = message/mailtail.txt
+
+
+######################################################################
+## [Sendmail, SendmailOptions]
+##
+## CWB가 email을 보내기 위해 사용할 sendmail의 위치를 기술한다.
+##
+######################################################################
+Sendmail = @Sendmail@
+SendmailOptions = -i -t
+
+
+######################################################################
+## [MailName, MailOrganization]
+##
+## Email에서 From란에 사용될 이름과, Organization란에 사용될 기관명을
+## 기술한다.
+##
+######################################################################
+MailName         = CWB-Mailer
+MailOrganization = Nobreak Technologies, Inc.
+
+
+######################################################################
+## [PageLinkNum]
+##
+## 목록보기 화면 하단에 나오는 페이지 링크의 갯수를 설정한다.
+##
+##                                         Total 1/15 Pages
+## [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] - [Next] [15]
+##
+######################################################################
+PageLinkNum = 10 
+
+
+######################################################################
+## [TextFieldLength]
+##
+## 게시물 쓰기 화면의 본문입력창의 크기를 조정한다. 74는 여러 browser
+## 에서 최적화된 값이다.
+## 게시판의 용도에 따라 적절히 조정한다.
+##
+######################################################################
+TextFieldLength = 74 
+
+
+######################################################################
+## [ReSubject, ReText, ReLine]
+##
+## 관련글이 써질경우 관련대상글의 내용이 표기되는데 이때 사용할 기호를
+## 기술한다.
+##
+## [Original Text]
+## Name    : Nobreak
+## Subject : Hi, this is test.
+## Text    : Good!!!
+##
+## [Quoted Text]
+## Subject : Re: Hi, this is test.
+## Text    : Nobreak wrote:
+##           > Good!!!
+##
+######################################################################
+ReSubject = Re:
+ReText    = wrote:
+ReLine    = >
+
+
+######################################################################
+## [CookieEnable]
+##
+## CookieEnable이 true로 설정되면 사용자가 게시물을 작성할때 이름과 우
+## 편주소가 사용자 browser에 기억되어, 다음번 게시물을 작성시, 자동 표
+## 기 된다.
+##
+## 그러나, 학교 컴퓨터실과 같이 다수가 사용하는 환경이라면 이전 사용자
+## 이름과 주소가 표기되어 혼돈을 줄소도 있다.
+## 이때에는 CookieEnable = false로 지정하여 본 기능을 정지 시킬수 있다
+##
+## CookieExpireDays는 한번 설정된 값이 유효한 날수이다. 30일은 대부분
+## 적당하다.
+##
+######################################################################
+CookieEnable     = true
+#CookieEnable     = false
+
+CookieExpireDays = 30
+
+
+######################################################################
+## [Icon*]
+##
+## 각 항목에 링크될 icon을 지정한다. HtmlBasePath를 기준으로 상대 경로
+## 표기한다.
+##
+######################################################################
+IconAdminTitle = icon/admintitle.gif
+IconAdmin  = icon/admin.gif
+IconStat   = icon/stat.gif
+IconHome   = icon/home.gif
+IconBack   = icon/back.gif
+IconHelp   = icon/help.gif
+
+IconList   = icon/list.gif
+IconReload = icon/reload.gif
+IconWrite  = icon/write.gif
+IconModify = icon/modify.gif
+IconReply  = icon/reply.gif
+IconDelete = icon/delete.gif
+
+IconUp     = icon/up.gif
+IconDown   = icon/down.gif
+
+IconBlank  = icon/blank.gif
+
+######################################################################
+## [IconType*]
+##
+## 업로드된 파일의 확장자에 따른 표시 icon과 표시 형태를 정한다.
+## 아래와 같이 5개의 기본적인 형식을 지원한다.
+##
+## 1. IconType-EXTENSION      = ICON_File     // 다운로드 
+## 2. IconTypeText-EXTENSION  = ICON_File     // 다운로드 + Preview
+## 3. IconTypeImage-EXTENSION = ICON_File     // 다운로드 + View image
+## 4. IconTypeSound-EXTENSION = ICON_File     // 다운로드 + Play sound
+## 5. IconTypeMovie-EXTENSION = ICON_File     // 다운로드 + Play movie
+##
+## 1번은 다운로드 링크만이 표시된다.
+## 2번은 ASCII형식의 파일로써 게시물을 읽을때 몇라인을 간략히 보여준다.
+## 3번은 게시물을 읽을때 그림을 같이 보여준다.
+## 4번과 5번은 embbed tag로써 플레이가 가능한 파일일때 지정한다.
+##
+## 예로, 'exam.abc'란 음악 파일이 있고, 이것의 format이 'wav'랑 같다면,
+## 다음과 같이 지정함으로써 게시물을 볼때 자동으로 play 시킬수 있다.
+## ex) IconTypeSound-ABC = icon/type/abc.gif 
+## 
+######################################################################
+IconWidth  = 16
+IconHeight = 16
+IconOpen   = icon/open.gif
+IconClose  = icon/close.gif
+IconOpenNew  = icon/open-new.gif
+IconCloseNew = icon/close-new.gif
+IconTypeDefault = icon-type/default.gif
+IconTypeUnknown = icon-type/unknown.gif
+######################################################################
+## 1. Just download link
+######################################################################
+## Binary Text
+IconType-DOC       = icon-type/text.gif
+IconType-PPT       = icon-type/ppt.gif
+IconType-PS        = icon-type/text.gif
+IconType-HWP       = icon-type/hwp.gif
+## Binary / Executable
+IconType-EXE = icon-type/exe.gif
+IconType-COM = icon-type/com.gif
+IconType-CGI = icon-type/exe.gif
+## Binary / Compressed
+IconType-Z   = icon-type/compressed.gif
+IconType-GZ  = icon-type/compressed.gif
+IconType-TAR = icon-type/compressed.gif
+IconType-TGZ = icon-type/compressed.gif
+IconType-ZIP = icon-type/compressed.gif
+IconType-ARJ = icon-type/compressed.gif
+IconType-RAR = icon-type/compressed.gif
+IconType-LHZ = icon-type/compressed.gif
+IconType-LZH = icon-type/compressed.gif
+## Binary / Device
+IconType-DLL = icon-type/device.gif
+IconType-SYS = icon-type/device.gif
+## Binary /Image which can not display
+IconType-PCX  = icon-type/pcx.gif
+IconType-BMP  = icon-type/bmp.gif
+IconType-ILBM = icon-type/image.gif
+IconType-JIF  = icon-type/image.gif
+IconType-JFIF = icon-type/image.gif
+IconType-IFF  = icon-type/image.gif
+IconType-TGA  = icon-type/image.gif
+IconType-TIF  = icon-type/image.gif
+IconType-TIFF = icon-type/image.gif
+IconType-WMF  = icon-type/image.gif
+IconType-PSD  = icon-type/image.gif
+IconType-RLE  = icon-type/image.gif
+## Binary / Sound clip which can not play
+IconType-RA        = icon-type/ra.gif
+IconType-MP3       = icon-type/mp3.gif
+IconType-MP2       = icon-type/mp3.gif
+######################################################################
+## 2. Auto preview
+######################################################################
+IconTypeText-TXT   = icon-type/txt.gif
+IconTypeText-CFG   = icon-type/text.gif
+IconTypeText-CONF  = icon-type/text.gif
+IconTypeText-SHTML = icon-type/html.gif
+IconTypeText-HTML  = icon-type/html.gif
+IconTypeText-HTM   = icon-type/html.gif
+IconTypeText-BAT   = icon-type/bat.gif
+IconTypeText-C     = icon-type/text.gif
+IconTypeText-CPP   = icon-type/text.gif
+IconTypeText-H     = icon-type/text.gif
+IconTypeText-PL    = icon-type/text.gif
+IconTypeText-TCL   = icon-type/text.gif
+IconTypeText-INI   = icon-type/text.gif
+IconTypeText-RAM   = icon-type/ra.gif
+IconTypeText-M3U   = icon-type/text.gif
+######################################################################
+## 3. Auto display image
+######################################################################
+IconTypeImage-GIF  = icon-type/gif.gif
+IconTypeImage-JPG  = icon-type/jpg.gif
+IconTypeImage-JPE  = icon-type/jpg.gif
+IconTypeImage-JPEG = icon-type/jpg.gif
+IconTypeImage-PNG  = icon-type/png.gif
+######################################################################
+## 4. Auto play sound clip
+######################################################################
+IconTypeSound-AU   = icon-type/sound.gif
+IconTypeSound-WAV  = icon-type/wav.gif
+IconTypeSound-MID  = icon-type/sound.gif
+IconTypeSound-MIDI = icon-type/sound.gif
+######################################################################
+## 5. Auto play vidio clip
+######################################################################
+IconTypeMovie-AVI  = icon-type/movie.gif
+IconTypeMovie-MOV  = icon-type/movie.gif
+IconType-MPG       = icon-type/movie.gif
+IconType-MPEG      = icon-type/movie.gif
+
+
+######################################################################
+## [StatBar*]
+##
+## 통계 모듈에서 사용될 icon을 지정한다. HtmlBasePath를 기준으로 상대
+## 경로 표기한다.
+##
+######################################################################
+StatBarWidth     = 12
+StatBarMaxHeight = 200
+StatBarUnder     = icon-stat/bar-under.gif
+StatBar90 = icon-stat/bar-90.gif
+StatBar80 = icon-stat/bar-80.gif
+StatBar70 = icon-stat/bar-70.gif
+StatBar60 = icon-stat/bar-60.gif
+StatBar50 = icon-stat/bar-50.gif
+StatBar40 = icon-stat/bar-40.gif
+StatBar30 = icon-stat/bar-30.gif
+StatBar20 = icon-stat/bar-20.gif
+StatBar10 = icon-stat/bar-10.gif
+StatBar00 = icon-stat/bar-00.gif
+
+
+######################################################################
+## [PreviewLines]
+##
+## 업로딩된 파일이 IconTypeText-EXTENSION 형식에 따른다면, 파일의 일부
+## 를 보여준다. 이때 미리보기할 라인의 갯수를 지정한다.
+## 0으로 설정하면 파일의 모든 내용을 보여준다.
+##
+######################################################################
+PreviewLines = 10
+#PreviewLines = 0
+
+
+######################################################################
+## [CryptSalt]
+##
+## 비밀번호 암호화시 사용될 16 bit 키를 지정한다.
+## 본 element가 수정되면 DB 호환성에 문제가 생길수 있다. 수정치 않는다
+##
+######################################################################
+CryptSalt = SY
+
+
+## END ###############################################################

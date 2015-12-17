@@ -1,0 +1,729 @@
+LicenseKey = @LicenseKey@
+######################################################################
+##                                                                  ##
+##         CrazyWWWBoard.conf Realtime Configuration File           ##
+##                                                                  ##
+##      Official distribution site : http://cwb98.nobreak.com       ##
+##               Technical contact : support@cic21.com              ##
+##                                                                  ##
+##            (c) Nobreak Technologies & Cosmo Internet Corporation ##
+######################################################################
+##
+## 本ファイル（CrazyWWWBoard.conf）は、
+## 「CrazyWWWBoard.cgi」と「 CrazyAdmin.cgi」によって
+## 解釈され、これらのファイルの実行において、そのまま即時に
+## 反映される（リアルタイム適用）。
+##
+## 「CrazyWWWBoard（以下、CWB）」は、長期間、ユーザの
+## 要求に応じて修 正したソフトである。われわれは、そうした
+## ユーザの多様な要求に基づき、ユーザが自らソース・コードを
+## 直さなくても簡単に使えるようにするため、
+## この「realtime configuration」を導入した。
+##
+## 本ファイルには、多数の設定かあるが、大多数のユーザの
+## ニーズに応じてこれを設定しておいた。ユーザが 「CWB」
+## を初めてインストールしても、RealBasePathと
+## HtmlBasePath elementだけをサーバに合わせて修正し、
+## すべての設定を「default状態（変更せず）」ですぐ使える。
+## 「CWB」のすべての機能が正常に動作することが確認できたら、
+## ユーザは、次の諸エレメント（Element）を変更できる。
+##
+## CWBは、本ファイルを次のような規則に従って解釈する。
+##
+## 1．エレメント（Element）記述は次のとおりである。
+##    ex) Element Name = Value String
+##
+## 2．一行の頭文字が、'#'であれば、解釈されない（注釈）。
+##    ex) # comments
+##
+## 3．Element NameとValue Stringは、Case Sensitive
+##    （大小文字区別）しながら解釈される。
+##
+## 4．エレメント（Element）記述において、Element Name
+##   前のスペース、 '=' の両方のスペース、Value String 後の
+## スペースは、無視される。
+##    ex) 次のような設定である。
+##        Element Name=Value String
+##        Element Name = Value String
+##        Element Name     =      Value String
+##
+## 5．同一の Element nameは、先に宣言になったものが有効だ。
+##
+## 本ファイルにおいて '##'で始まる行は説明であり、 '#'で始まる
+## 行は、エレメント（Element）の使用例（注釈）を表す。
+##
+##    CookieEnable     = true   <- 解釈エレメント（Element）
+##    #CookieEnable     = false  <- 注釈エレメント（Element）
+##
+## したがって、ユーザは修正したいエレメント（Element）の前の
+## 記号 '#'を追加・削除することによって大部分の設定を変更できる。
+##
+######################################################################
+
+######################################################################
+## [ProgramName]
+##
+## 「CrazyWWWBoard.cgi」と「CrazyAdmin.cgi」のファイル名の
+## 変更は、このCGIソフトウェアが自動的に把握する。本エレメント
+## （Element）は、「CrazyAdmin.cgi」から正しい
+## 「CrazyWWWBoard.cgi」のファイル名を得るためのものである。
+## したがって、「CrazyWWWboard.cgi」のファイル名を
+## 変更しようとするなら、それに合わせて修正する。
+##
+## ファイル名の変更したユーザについて、われわれは残念と 寂しさを
+## 感じします！ 「crazy」は、マニア（mania）を意味する他の単語
+## から用いた名前であって、われわれは、情熱と心血を尽くして生んだ
+## 子息に対して、「CrazyWWWBoard」、「CrazyAdmin」という
+## 名前を創り上げた。こうした点を尊重して、ユーザが元の 名前を
+## そのまま使ってくれれば、われわれは、喜び、感謝する。
+##
+######################################################################
+ProgramName = CrazyWWWBoard.cgi
+
+######################################################################
+## [AdminName, AdminEmail]
+##
+## 管理者の名前とEmailアドレスを記入する。
+## DB生成後、環境設定画面において基本的に表れる。
+######################################################################
+AdminName = @AdminName@
+AdminEmail = @AdminEmail@
+
+######################################################################
+## [RealBasePath, HtmlBasePath]
+##
+## 「CWB」は、CGIプログラムと、DataBase(DB)とを分離して
+## 設置できるように修正された。「CWB 3.x」のヴァージョンまては、
+## 設置の簡便性のためにCGIが存在するディレクトリの下にデータ
+## ディレクトリがおかれるように設計された。しかし、これはウェブ
+## サーバの設定によって、アイコン（icon）が壊れるなどの問題が
+## 生じるなど、CWBを新しい上位ヴァージョンにアップグレード
+## （Up grade）する度にユーザが使う既存の資料（アイコン、HTML
+## ファイル）を、また入れ直さなければならない、
+## という不便さがあった。
+##
+## したがって、「CWB 98では」次のように、CGIは別途の
+## 「cgi-bin」ディレクトリの中に、関連のDataにはHTMLファイルが
+## 入る「document root」ディレクトリの下位に 設置されるように
+## 改善した。もちろん 3.x ヴァージョンのように CGIが存在する
+## ディレクトリの下に設置することもできるが、先に指摘されたものと
+## 同一な理由でCGIとDataを分離しで設置するようすすめる。
+##
+##
+## /.../cgi-bin/ -+- CrazyAdmin.cgi
+##                +- CrazyAdmin.conf
+##                +- CrazyWWWBoard.cgi
+##                +- CrazyWWWBoard.conf
+##
+## /.../htdocs/.../cwb-data/ -+- data/
+##      ------                +- icon/
+##        |                   +- icon-type/
+##        V                   +- logs/
+##  or /public_html/          +- message/
+##
+## 設置方法の変更のため、CGIはdataが存在するディレクトリを
+## 把握する方法が要求される。これらの２つのエレメント（Element）は、
+## cwb-dataのsystem絶対経路とweb上で HTML絶対経路を提供する。
+##
+## 私たちは、初期配布するデータ（data）ディレクトリを'cwb-data'と
+## 命名して提供する。ここで設定される経路は、今から説明するdata,
+## icon, icon-type, logs, messagesなどの基準ディレクトリになる。
+##
+## RealBasePathは、cwb-data ディレクトリのシステム（system）の
+## 絶対経路を意味する。Unix shell上で、cwb-dataディレクトリへ 移動
+## した後、pwdとコマンドした際に、表示されるディレクトリを記述する。
+##
+## ex) $ cd cwb-data
+##     $ pwd
+##     /home/nobreak/public_html/cwb-data
+##
+##     RealBasePath = /home/nobreak/public_html/cwb-data
+##
+## HtmlBasePathは Http Document Rootの基準となる cwb-data の
+## 絶対経路である。すなわち、ウェーブ上において出力される cwb-data
+## ディレクトリのURLのドメイン（domain）を除去する形で記述する。
+##
+## ex) Internet URL -> http://cwb98.nobreak.com/~nobreak/cwb-data
+##                                             ~~~~~~~~~~~~~~~~~~
+##     HtmlBasePath ->  /~nobreak/cwb-data
+##
+######################################################################
+RealBasePath = @RealBasePath@
+HtmlBasePath = @HtmlBasePath@
+
+######################################################################
+## [DefaultCharSet]
+##
+## 多国語環境において文字化けを防止するために、各「DB」において
+## 「CharSet」を指定できる。よって、CWBは、次のような内容を出力する。
+##
+## <meta .... content="text/html; charset=CharSet">
+##
+## 各「DB」の管理者画面（Admin）で「CharSet」を指定すると適用される。
+## もし、何も書かずに空白であれば、DefaultCharSetが適用される。
+##
+## 多数の「DB」が 「x-sjis」に設定されるが、いくつかの「DB」のみ、
+## 「euc-kr」に設定する時に、このエレメント（Element）は効果的である。
+##
+## これは、アルファベット以外の表現について、どの文字セットを使用
+## すべきかをブラウザ（Browser）に命令するものとして役割を果たす。
+## 一つの「DB」において多国語を同時に見たいなら、全くブラウザ
+## （Browser）の役割であることを明示しなければなない。
+##
+## もし、DefaultCharSetと「DB」の 「CharSet」が何も書かずに空白で
+## 設定されていれば、これらの出力は省略される。
+##
+## 他の使用理由としては「フォント（font）」の出力を綺麗にする。
+## 例えば、韓国語の場合、「euc-kr」に設定すれば「Gulchimche」が
+## 適用される。
+##
+## あるブラウザ（Browser）においては、CharSetが設定されると、
+## 画面が点々と点滅することがあり得る。
+##
+## 注意すべき点は、各「DB」の管理者画面（Admin）で、「DB」別に　
+## HTML Header, Tailerを使用すれば、本来の機能が作動しないから、
+## 管理者がHeader,Tailerにおいて直接に記入しなければならない。
+##
+## 一般的には、このエレメント（Element）を修正しなくても問題はない。
+######################################################################
+DefaultCharSet =
+#DefaultCharSet = x-sjis
+#DefaultCharSet = iso-8859-1
+#DefaultCharSet = euc-kr
+
+######################################################################
+## [DefaultTitle]
+##
+## 生成されたそれぞれの「DB（掲示板）」別に、Browser Titleを
+## 指定することができる。しかし、「DB」においてBrowser Titleを
+## 何も指定しなければ、以下のDefaultTitleは Browser Titleとして
+## 適用される。
+##
+######################################################################
+DefaultTitle = CrazyWWWBoard 98 Professional Edition II
+
+######################################################################
+## [AllowUpload, UploadSoftLimit, UploadHardLimit]
+##
+## 「CWB」は、ファイル・アップローディングを支援する。
+## ここではファイル・アップローディング に関する２つのエレメント
+## （Element）について説明する。
+##
+## AllowUpload elementは、全ての「DB」のファイル・アップ
+## ローディングを強制的に不可能にする。これは、「DB」別に管理者が
+## 違う場合、有効であり、 AllowUploadが 「false」として
+## 設定されれば、すでに、Upload Enableに設定された「DB」においても
+## ファイル・アップローディングが禁止される。
+##
+## UploadLimit elementでは、「DB」別の ファイル・
+## アップローディング の総許容量を「Kbyte」単位により表す。
+##
+## UploadSoftLimitは、監視容量である。つまり、現在
+## アップローディングされたファイル総容量が設定値より大きいと、
+## アップローディングだけを禁止させる（掲示することは可能である）。
+## また、一旦伝送されたファイルについては、登録が保障される。
+##
+## UploadHardLimitは、絶対的な制限である。アップロードされた資料の
+## 合計は設定値を超えることができない。つまり、掲示の伝送が成功に
+## 進行しても、添付したファイル容量とすでにアップロードされた
+## ファイル容量との合計が設定値を超えると、伝送は中断される。
+## もし、既存のアップローディングの容量が設定値より大きいのであれば
+## （UploadHardLimitを後で設定したとき)、掲示物の作成は拒否される。
+##
+## もう一度、これらの２つのelementの差を整理すると、次のようである。
+## UploadSoftLimitを使う場合には、まずアップローディングが許され、
+## 伝送するファイルによって総アップローディングの容量の合計が
+## 設定値を超えても、その掲示物は成功に登録されるが、
+## UploadHardLimitは当該の掲示物に対しても登録を中断させる。
+## UploadSoftLimitが1024であっても、3000KBが超える単一の
+## ファイルが登録できる点を注意しなければならない。これを防ぐため、
+## UploadHardLimitが、主に使われるのである。
+##
+## よって、UploadHardLimitは、UploadSoftLimitより、
+## その値が大きいか、同じ場合に意味がある。
+##
+## ex) UploadSoftLimit = 1024
+##     UploadHardLimit = 2048
+##
+## 設定値が「0」であれば、アップローディングの容量は制限されない。
+##
+## sample) +-------------+---------------+
+##         |   MegaBytes |  UploadLimit  |
+##         +-------------+---------------+
+##         |       1 MB  |      1024     |
+##         |       2 MB  |      2048     |
+##         |       3 MB  |      3072     |
+##         |       5 MB  |      5120     |
+##         |      10 MB  |     10240     |
+##         |      20 MB  |     20480     |
+##         +-------------+---------------+
+##
+######################################################################
+AllowUpload = true
+#AllowUpload = false
+
+UploadSoftLimit = 0
+#UploadSoftLimit = 1024
+
+UploadHardLimit = 0
+#UploadHardLimit = 5120
+
+######################################################################
+## [DataDirectory, DataExtension]
+##
+## ここでは掲示板「DB」が貯蔵されるディレクトリと「DB」ファイルの
+## 拡張子を記述する。DataDirectoryは RealBasePathを基準とした
+## 相対経路の表記法で記述されなければならなく、パケジとして
+## 配布するとき、cwb-data/data ディレクトリがこのため割り当てら
+## れるので、cwb-data/data ディレクトリの位置を変更しない限り、
+## 本来の基本設定値をそのまま使えばよい。
+##
+## また、 「CWB」にはDB engineとして「GDBM」を採択してあり、
+## 「GDBM」は通常の 拡張子を「gdbm」で使用する。
+##
+## 「DB」が貯蔵される位置は、以下の通りである。
+##   RealBasePath/DataDirectory/DB_NAME.DataExtension
+##
+######################################################################
+DataDirectory = data
+DataExtension = gdbm
+
+######################################################################
+## [StatDirectory, StatExtension]
+##
+## ここでは掲示板の統計DBが保存されるディレクトリと、統計DBの
+## ファイルの拡張子を記述する。
+## StatDirectoryは、RealBasePathを基準とした相対経路の表記法で
+## 記述されなければならないし、パッケージの配布時には、
+## cwb-data/statのディレクトリがこのために割り当てられなければ
+## ならない。
+## 
+## StatDirectoryにおいて何も指定しないと、統計記録はDisableとなる。
+## このときには、掲示板の統計機能は作動しない。
+## 
+## 統計DBが保存される位置は、次のようである。
+##   RealBasePath/StatDirectory/DB_NAME.StatExtension
+######################################################################
+StatDirectory = stat
+#StatDirectory =
+StatExtension = stat-gdbm
+
+######################################################################
+## [LogDirectory]
+##
+## ログは、各「DB」別に接続統計および保安のために使う。
+## LogDirectoryは、RealBasePathを基準として相対経路の表記法に
+## 基づいて記述されなければならない。パケジ配布時、cwb-data/data
+## ディレクトリがこのため割り当てられるので、cwb-data/data ディレ
+## クトリの位置を変更しない限り、本来の設定値をそのまま使えばよい。
+##
+## もし、貯蔵媒体の容量問題により、ログを使用したくないならば、
+## 以下のような空白の文字列を用いて設定することができる。しかし、
+## この場合、 CWBの統計機能をもはや資料を収集できないだろう。
+##
+##   LogDirectory =
+##
+## ログが貯蔵される位置は以下の通りである。
+##   RealBasePath/LogDirectory/adm_access_log     <- CrazyAdmin.cgi
+##                             adm_error_log      <- CrazyAdmin.cgi
+##
+##                             error_log          <- CrazyWWWBoard.cgi
+##                             access_log.DB_NAME <- CrazyWWWBoard.cgi
+##                             error_log.DB_NAME  <- CrazyWWWBoard.cgi
+##
+######################################################################
+LogDirectory =
+#LogDirectory = log
+
+######################################################################
+## [AllowDBhtml, HtmlHead, HtmlTail]
+##
+## 「CWB」は、基本的に以下のような形をもってその文字列をブラウザ
+## （browser）で出力する。
+##
+##   --[CGI Output 1]-----------
+##   <html>
+##   <head>
+##     <title>Browse Title</title>
+##     <meta http-equiv="Content-Type" content="text/html; charset=CharSet">
+##   </head>
+##   --[HtmlHead]-------------
+##   <body ...>
+##   ...
+##   <center>
+##   --[CGI Output 2]-----------
+##   ...
+##   ...
+##   --[HtmlTail]-------------
+##   </center>
+##   ...
+##   </body>
+##   --[CGI Output 3]-----------
+##   </html>
+##
+## この中でHtmlHeadと HtmlTail部分に指定されたファイルの
+## 内容が出力される。これをSystem Default HTML と呼ぶ。
+##
+## 多数の「DB」に同一のインタペースを支援する場合に有用である。
+## しかし、いくつかのDBに対して異なる形態を取りたければ、
+## DBの管理者メニューにあるオプションを使用することもできる。
+##
+## 「DB」別にHtmlが使用されるときは、以下のようにCGI Output
+## 1, 3が出力されない。したがって、CGI Output 1, 3に該当する
+## コードを使用者が作成しなければならない。
+##
+##   --[DB HTML Header]-----------
+##   <html>
+##   <head>
+##     ...
+##   </head>
+##   <body>
+##   ...
+##   <center>
+##   --[CGI Output]-----------
+##   ...
+##   ...
+##   --[DB HTML Tail]-------------
+##   </center>
+##   ...
+##   </body>
+##   </html>
+##
+## AllowDBhtmlは、当該「DB」のHTML Header, Tailer 機能を
+## 強制的に中止させる。これが falseと設定されると、既存の DB HTML
+## 機能を使用した「DB」も System Default HTMLに強制的に変換される。
+##
+## 実際のファイルの位置は以下のようであり、特別な修正を
+## 加えない限り、基本設定値はそのまま使用する。
+##   RealBasePath/HtmlHead
+##   RealBasePath/HtmlTail
+##
+######################################################################
+AllowDBhtml = true
+#AllowDBhtml = false
+
+HtmlHead  = message/htmlhead.html
+HtmlTail  = message/htmltail.html
+
+######################################################################
+## [HiddenAdminLink, HiddenStatLink]
+##
+## 各「DB」の上段において便利性のため、管理者の接続 iconと統計iconが
+## リンクされているが、これらのアイコンを画面から隠そうとするとき、
+## この機能を使う。
+##
+## アイコン（icon）を隠したとき、 CrazyAdmin.cgiを通じて接続するか
+## 以下のように接続して使用することができる。
+##   CrazyWWWBoard.cgi?db=DB_NAME&mode=admin
+##   CrazyWWWBoard.cgi?db=DB_NAME&mode=stat
+##
+######################################################################
+HiddenAdminLink = false
+#HiddenAdminLink = true
+
+HiddenStatLink = false
+#HiddenStatLink = true
+
+######################################################################
+## [HiddenHelpLink, Help]
+##
+## HiddenHelpLink elementは、ヘルプアイコン（icon）を画面から隠したい
+## ときに用い、Help elementは、実際にリンクされるファイル経路である。
+##
+## ヘルプ（Help）は、HtmlBasePathを基準とした相対経路で
+## 記述されなければならないし、次のように解釈される。
+##   HtmlBasePath/Help
+##
+######################################################################
+HiddenHelpLink  = false
+#HiddenHelpLink  = true
+
+Help = @Help@
+#Help = YOUR_OWN_HELP.html
+
+######################################################################
+## [AllowDBmail, MailHead, MailTail]
+##
+## MailHeadと、MailTailは、掲示物を電子メール（Email）で伝送する際、
+## ヘッダーとフッターに該当する内容が記述されるファイル位置を
+## RealBasePathを基準として相対経路で表記される。
+##
+## 「DB」別、異なるメッセージを送ることができるが、この場合には、
+## 各DBの管理画面において メッセージを設定すればよい。
+##
+## AllowDBmailは、各「DB」別、電子メール（Email）メッセージの
+## 使用許諾の可否を決める。
+##
+######################################################################
+AllowDBmail = true
+#AllowDBmail = false
+
+MailHead = message/mailhead.txt
+MailTail = message/mailtail.txt
+
+######################################################################
+## [Sendmail, SendmailOptions]
+##
+## CWBが、電子メール（Email）を送るためのsendmailの位置を記述する。
+##
+######################################################################
+Sendmail = @Sendmail@
+SendmailOptions = -i -t
+
+######################################################################
+## [MailName, MailOrganization]
+##
+## 電子メール（Email）のフォーム（From）において使われる名前と、
+## Organization項目において使われる機関名を記述する。
+##
+######################################################################
+MailName         = CWB-Mailer
+MailOrganization = Nobreak Technologies, Inc.
+
+######################################################################
+## [PageLinkNum]
+##
+## 目録閲覧の画面の下段において出力するページリンクの個数を設定する。
+##
+##                                         Total 1/15 Pages
+## [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] - [Next] [15]
+##
+######################################################################
+PageLinkNum = 10
+
+######################################################################
+## [TextFieldLength]
+##
+## 掲示物の書込画面の本文入力のテキストボックス大きさを調整する。
+## 74のサイズは、さまざなブラウザ（browser）から最適化した値である。
+## 掲示板の用途によって、適切に調整する。
+##
+######################################################################
+TextFieldLength = 74
+
+######################################################################
+## [ReSubject, ReText, ReLine]
+##
+## 返事する文が書かれる場合、その対象の文の内容が詳記されるが、
+## このときに用いる、区別のための記号を記述する。
+##
+## [Original Text]
+## Name    : Nobreak
+## Subject : Hi, this is test.
+## Text    : Good!!!
+##
+## [Quoted Text]
+## Subject : Re: Hi, this is test.
+## Text    : Nobreak wrote:
+##           > Good!!!
+##
+######################################################################
+ReSubject = Re:
+ReText    = wrote:
+ReLine    = >
+
+######################################################################
+## [CookieEnable]
+##
+## CookieEnableが、trueで設定されると、使用者が掲示物を作成するとき、
+## 氏名とアドレスが使用者のブラウザ（browser）において記憶される、
+## 次回の掲示物を作成する際、自動的に表記される。
+##
+## しかし、学校のパソコン室（電算室）などのような多数の人が使用する
+## 場合であれば、以前使用者のアドレスと氏名が表記されると、混沌を
+## 招きやすい。このときには、CookieEnable = falseで指定し、
+## この機能を停止させることができる。
+##
+## CookieExpireDaysは、一旦記憶されたデータが有効な日数である。
+## 30は、最も適当であると思われる。
+##
+######################################################################
+CookieEnable     = true
+#CookieEnable     = false
+
+CookieExpireDays = 30
+
+######################################################################
+## [Icon*]
+##
+## 各項目にリンクされるアイコン（icon）を決める。
+## HtmlBasePathを基準として、相対経路で表記する。
+##
+######################################################################
+IconAdminTitle = icon/admintitle.gif
+IconAdmin  = icon/admin.gif
+IconStat   = icon/stat.gif
+IconHome   = icon/home.gif
+IconBack   = icon/back.gif
+IconHelp   = icon/help.gif
+
+IconList   = icon/list.gif
+IconReload = icon/reload.gif
+IconWrite  = icon/write.gif
+IconModify = icon/modify.gif
+IconReply  = icon/reply.gif
+IconDelete = icon/delete.gif
+
+IconUp     = icon/up.gif
+IconDown   = icon/down.gif
+
+IconBlank  = icon/blank.gif
+
+######################################################################
+## [IconType*]
+##
+## アップロードされたファイルの拡張子によって、表示アイコン（icon）
+## と表示形態を決める。下のように５つの基本形式を支援する。
+##
+## 1. IconType-EXTENSION      = ICON_File    // Download
+## 2. IconTypeText-EXTENSION  = ICON_File    // Download + Preview
+## 3. IconTypeImage-EXTENSION = ICON_File    // Download + View image
+## 4. IconTypeSound-EXTENSION = ICON_File    // Download + Play sound
+## 5. IconTypeMovie-EXTENSION = ICON_File    // Download + Play movie
+##
+## 1番は、ダウンロードのリンクだけ表示する。
+## 2番は、ASCII形式のファイルとして掲示物を読んだとき、
+## 　　いくつかのラインを簡略に出力する。
+## 3番は、掲示物を読む際に、絵とともに 表示する。
+## 4番と、5番は、embbed tagとして、プレーが可能なファイルで使う。
+##
+## たとえば、「exam.abc」という音楽のファイルがあって、
+## これのformatが「wav」であれば、次のように指定することによって、
+## 掲示物を読む際に自動的にプレー（play）させることができる。
+## ex) IconTypeSound-ABC = icon/type/abc.gif
+##
+######################################################################
+IconWidth  = 16
+IconHeight = 16
+IconOpen   = icon/open.gif
+IconClose  = icon/close.gif
+IconOpenNew  = icon/open-new.gif
+IconCloseNew = icon/close-new.gif
+IconTypeDefault = icon-type/default.gif
+IconTypeUnknown = icon-type/unknown.gif
+######################################################################
+## 1. Just download link
+######################################################################
+## Binary Text
+IconType-DOC       = icon-type/text.gif
+IconType-PPT       = icon-type/ppt.gif
+IconType-PS        = icon-type/text.gif
+IconType-HWP       = icon-type/hwp.gif
+## Binary / Executable
+IconType-EXE = icon-type/exe.gif
+IconType-COM = icon-type/com.gif
+IconType-CGI = icon-type/exe.gif
+## Binary / Compressed
+IconType-Z   = icon-type/compressed.gif
+IconType-GZ  = icon-type/compressed.gif
+IconType-TAR = icon-type/compressed.gif
+IconType-TGZ = icon-type/compressed.gif
+IconType-ZIP = icon-type/compressed.gif
+IconType-ARJ = icon-type/compressed.gif
+IconType-RAR = icon-type/compressed.gif
+IconType-LHZ = icon-type/compressed.gif
+IconType-LZH = icon-type/compressed.gif
+## Binary / Device
+IconType-DLL = icon-type/device.gif
+IconType-SYS = icon-type/device.gif
+## Binary /Image which can not display
+IconType-PCX  = icon-type/pcx.gif
+IconType-BMP  = icon-type/bmp.gif
+IconType-ILBM = icon-type/image.gif
+IconType-JIF  = icon-type/image.gif
+IconType-JFIF = icon-type/image.gif
+IconType-IFF  = icon-type/image.gif
+IconType-TGA  = icon-type/image.gif
+IconType-TIF  = icon-type/image.gif
+IconType-TIFF = icon-type/image.gif
+IconType-WMF  = icon-type/image.gif
+IconType-PSD  = icon-type/image.gif
+IconType-RLE  = icon-type/image.gif
+## Binary / Sound clip which can not play
+IconType-RA        = icon-type/ra.gif
+IconType-MP3       = icon-type/mp3.gif
+IconType-MP2       = icon-type/mp3.gif
+######################################################################
+## 2. Auto preview
+######################################################################
+IconTypeText-TXT   = icon-type/txt.gif
+IconTypeText-CFG   = icon-type/text.gif
+IconTypeText-CONF  = icon-type/text.gif
+IconTypeText-SHTML = icon-type/html.gif
+IconTypeText-HTML  = icon-type/html.gif
+IconTypeText-HTM   = icon-type/html.gif
+IconTypeText-BAT   = icon-type/bat.gif
+IconTypeText-C     = icon-type/text.gif
+IconTypeText-CPP   = icon-type/text.gif
+IconTypeText-H     = icon-type/text.gif
+IconTypeText-PL    = icon-type/text.gif
+IconTypeText-TCL   = icon-type/text.gif
+IconTypeText-INI   = icon-type/text.gif
+IconTypeText-RAM   = icon-type/ra.gif
+IconTypeText-M3U   = icon-type/text.gif
+######################################################################
+## 3. Auto display image
+######################################################################
+IconTypeImage-GIF  = icon-type/gif.gif
+IconTypeImage-JPG  = icon-type/jpg.gif
+IconTypeImage-JPE  = icon-type/jpg.gif
+IconTypeImage-JPEG = icon-type/jpg.gif
+IconTypeImage-PNG  = icon-type/png.gif
+######################################################################
+## 4. Auto play sound clip
+######################################################################
+IconTypeSound-AU   = icon-type/sound.gif
+IconTypeSound-WAV  = icon-type/wav.gif
+IconTypeSound-MID  = icon-type/sound.gif
+IconTypeSound-MIDI = icon-type/sound.gif
+######################################################################
+## 5. Auto play vidio clip
+######################################################################
+IconTypeMovie-AVI  = icon-type/movie.gif
+IconTypeMovie-MOV  = icon-type/movie.gif
+IconType-MPG       = icon-type/movie.gif
+IconType-MPEG      = icon-type/movie.gif
+
+######################################################################
+## [StatBar*]
+##
+## 統計グラフにおいて用いる棒アイコン（icon）を指定する。
+## HtmlBasePathを基準とし、相対経路で表記する。
+##
+######################################################################
+StatBarWidth     = 12
+StatBarMaxHeight = 200
+StatBarUnder     = icon-stat/bar-under.gif
+StatBar90 = icon-stat/bar-90.gif
+StatBar80 = icon-stat/bar-80.gif
+StatBar70 = icon-stat/bar-70.gif
+StatBar60 = icon-stat/bar-60.gif
+StatBar50 = icon-stat/bar-50.gif
+StatBar40 = icon-stat/bar-40.gif
+StatBar30 = icon-stat/bar-30.gif
+StatBar20 = icon-stat/bar-20.gif
+StatBar10 = icon-stat/bar-10.gif
+StatBar00 = icon-stat/bar-00.gif
+
+######################################################################
+## [PreviewLines]
+##
+## アップロードされるファイルが、IconTypeText-EXTENSION の形式
+## であれば、ファイルの 一部を出力する。このとき、プリビューする
+## ラインの個数を決める。0に設定するとファイルの全内容が出力される。
+##
+######################################################################
+PreviewLines = 10
+#PreviewLines = 0
+
+######################################################################
+## [CryptSalt]
+##
+## パスワードを暗号化する際に用いる「16 bit」のキーを指定する。
+## このエレメント（Element）が修正されると、「DB」の互換性に
+## 問題が生じるので、修正しない。
+##
+######################################################################
+CryptSalt = SY
+
+## END ###############################################################
