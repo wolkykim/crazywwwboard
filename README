@@ -1,3 +1,8 @@
+AS OF TODAY, THIS SOFTWARE IS UNDER PUBLIC GNU LICENSE
+BY THE AUTHOR, SEUNGYOUNG "STEVE" KIM
+
+Below is the original README but no more under commercial licensing
+--
 ==================================================================
 
             CrazyWWWBoard 98 Professional Edition II
@@ -641,7 +646,7 @@ will be generated automatically by CWB.
 
 ex) HTML Header
   <body bgcolor='white'>
-  <center>CrazyWWWBoard 98 Professional Edition ¥±</center><br>
+  <center>CrazyWWWBoard 98 Professional Edition Â¥Â±</center><br>
   <center>
 
 ex) HTML Tailer
@@ -852,7 +857,7 @@ Caution) CWB doesn't support extended search.  When a user input 'bu-
       'management' or 'bulletin' or 'management'.
 
 ==[Writing an article window]========================================
-             CrazyWWWBoard 98 Professional Edition ¥±
+             CrazyWWWBoard 98 Professional Edition Â¥Â±
 ---------------------------------------------------------------------
 
  +---------------+--------------------------------------------------+
@@ -989,7 +994,7 @@ Tip) If an article is read, the counter will be increased by one.
 
 ==[DB Admin Menu]===================================================
 
-               CrazyWWWBoard 98 Professional Edition ¥±
+               CrazyWWWBoard 98 Professional Edition Â¥Â±
         ------------------------------------------------------------
         +----------------------------------------------------------+
         |                  Web Board Information                   |
